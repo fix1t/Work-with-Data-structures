@@ -116,6 +116,8 @@ int main(int argc, char const *argv[])
             if (S_count || C_count || R_count)
                 not_valid(&a);
             S_count--;
+            c = 'S';
+            break;
             /* continue to create line as set ...*/
 
         case 'S':
