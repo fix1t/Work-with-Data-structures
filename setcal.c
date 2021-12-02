@@ -826,7 +826,7 @@ int main(int argc, char const *argv[])
 /* FUNCTIONS ON SETS */
     void empty(set_t set)
     {
-        if(set.size == 0) 
+        if(set.size == 0) // if the size of the set is zero, the set is empty
         {
             printf("true\n");
         } else 
@@ -837,50 +837,51 @@ int main(int argc, char const *argv[])
 
     void card(set_t set)
     {
-        printf("%d\n", set.size);
+        printf("%d\n", set.size); // print the size of given set == the number of items in it
     }
 
     void complement(set_t universum, set_t set)
     {
-        int different;
-
         printf("S");
-        for(int i = 0; i < universum.size; i++)
+
+        int different;
+        for(int i = 0; i < universum.size; i++) // checks each item from the universum
         {
-            different = 1;
+            different = 1; // assumes the item is different than any in the given set
             for(int j = 0; j < set.size; j++)
             {
-                if(strcmp(universum.item[i], set.item[j]) == 0)
+                if(strcmp(universum.item[i], set.item[j]) == 0) // if it finds the item we are checking in the given set...
                 {
-                    different = 0;
+                    different = 0; // ...it changes the value to zero...
                     break;
                 }
             }
             if(different == 1)
             {
-                printf(" %s", universum.item[i]);
+                printf(" %s", universum.item[i]); // ...and prints the item
             }
         }
 
         printf("\n");
     }
 
-    void s_union(set_t set_1, set_t set_2)
+
+    void s_union(set_t set_1, set_t set_2) // since union is a data type, the function name must be a little different
     {
         printf("S");
+
         for(int i = 0; i < set_1.size; i++)
         {
-            printf(" %s", set_1.item[i]);
+            printf(" %s", set_1.item[i]); // prints every item in the set_1
         }
 
         int different;
-
-        for(int j = 0; j < set_2.size; j++)
+        for(int j = 0; j < set_2.size; j++) // we are checking every item from set_2...
         {
             different = 1;
-            for(int k = 0; k < set_1.size; k++)
+            for(int k = 0; k < set_1.size; k++) // ...to every item from set_1
             {
-                if(strcmp(set_2.item[j], set_1.item[k]) == 0)
+                if(strcmp(set_2.item[j], set_1.item[k]) == 0) // if the item in both sets is the same, change value of different to 0
                 {
                     different = 0;
                     break;
@@ -888,31 +889,33 @@ int main(int argc, char const *argv[])
             }
             if(different == 1)
             {
-                printf(" %s", set_2.item[j]);
+                printf(" %s", set_2.item[j]); // if the item from set_2 is different, print it
             }
         }
 
         printf("\n");
     }
+
 
     void intersect(set_t set_1, set_t set_2)
     {
         printf("S");
         
-        
         for(int i = 0; i < set_1.size; i++)
         {
             for(int j = 0; j < set_2.size; j++)
             {
-                if(strcmp(set_1.item[i], set_2.item[j]) == 0)
+                if(strcmp(set_1.item[i], set_2.item[j]) == 0) // goes through every item from set_1 and set_2 and if it finds same item...
                 {
-                    printf(" %s", set_1.item[i]);
+                    printf(" %s", set_1.item[i]); // ...it prints it
                     break;
                 }
             }
         }
+
         printf("\n");
     }
+
     void minus(set_t  set_1, set_t set_2) //rozdil mnozin
     {
         printf("S");//vypis 'set'
@@ -1198,25 +1201,57 @@ int main(int argc, char const *argv[])
     void domain(set_t relation)
     {
         printf("S");
-        for(int i = 0; i < relation.size; i++)
+
+        bool same;
+        for(int i = 0; i < relation.size; i++) // goes through every "first item" from relation
         {
-            printf(" %s", relation.item[i]);
+            same = false;
+            for(int j = 0; j < i; j++) // checks if the curent item was alredy printed
+            {
+                if(strcmp(relation.item[i], relation.item[j]) == 0)
+                {
+                    same = true; // changes the value of same and breaks
+                    break;
+                }
+            }
+            if(!same)
+            {
+                printf(" %s", relation.item[i]); // prints only, if the item wasn't alredy printed
+            }
         }
-        printf("\n");
-    }
-    void codomain(set_t relation)
-    {
-        printf("S");
-        for(int i = 0; i < relation.size; i++)
-        {
-            printf(" %s", relation.item_b[i]);
-        }
+
         printf("\n");
     }
 
+    void codomain(set_t relation)
+    {
+        printf("S");
+
+        bool same;
+        for(int i = 0; i < relation.size; i++) // goes through every "second item" from relation
+        {
+            same = false;
+            for(int j = 0; j < i; j++) // checks if the curent item was alredy printed
+            {
+                if(strcmp(relation.item_b[i], relation.item_b[j]) == 0)
+                {
+                    same = true; // changes the value of same and breaks
+                    break;
+                }
+            }
+            if(!same)
+            {
+                printf(" %s", relation.item_b[i]); // prints only, if the item wasn't alredy printed
+            }
+        }
+
+        printf("\n");
+    }
+
+
     void injective(set_t relation, set_t set_1, set_t set_2)
     {
-        if(function(relation) == false)
+        if(function(relation) == false) // checks if the relation is function
         {
             printf("Error: Relation is not a function.\n");
             return;
@@ -1228,14 +1263,14 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int j = 0; j < set_1.size; j++)
             {
-                if(strcmp(relation.item[i], set_1.item[j]) == 0)
+                if(strcmp(relation.item[i], set_1.item[j]) == 0) // checks if every "first item" from relation is in the set A
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n");
+                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
                 return;
             }
         }
@@ -1244,42 +1279,43 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int l = 0; l < set_2.size; l++)
             {
-                if(strcmp(relation.item_b[k], set_2.item[l]) == 0)
+                if(strcmp(relation.item_b[k], set_2.item[l]) == 0) // checks if every "second item" from relation is in the set B
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n");
+                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
                 return;
             }
         }
 
+        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once
         int same;
         for(int m = 0; m < relation.size; m++)
         {
             same = 0;
             for(int n = 0; n < relation.size; n++)
             {
-                if(strcmp(relation.item_b[m], relation.item_b[n]) == 0)
+                if(strcmp(relation.item_b[m], relation.item_b[n]) == 0) // if it finds same string in the item_b array..
                 {
-                    same++;
+                    same++; // ...it adds to this variable (by logic, this variable will always be at least 1)
                 }
             }
-            if(same != 1)
+            if(same != 1) // if there is different number of same items than 1, print false and return
             {
                 printf("false\n");
                 return;
             }
         }
+
         printf("true\n");
-        
     }
 
     void surjective(set_t relation, set_t set_1, set_t set_2)
     {
-        if(function(relation) == false)
+        if(function(relation) == false) // checks if the relation is function
         {
             printf("Error: Relation is not a function.\n");
             return;
@@ -1291,14 +1327,14 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int j = 0; j < set_1.size; j++)
             {
-                if(strcmp(relation.item[i], set_1.item[j]) == 0)
+                if(strcmp(relation.item[i], set_1.item[j]) == 0) // checks if every "first item" from relation is in the set A
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n");
+                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
                 return;
             }
         }
@@ -1307,30 +1343,32 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int l = 0; l < set_2.size; l++)
             {
-                if(strcmp(relation.item_b[k], set_2.item[l]) == 0)
+                if(strcmp(relation.item_b[k], set_2.item[l]) == 0) // checks if every "second item" from relation is in the set B
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n");
+                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
                 return;
             }
         }
 
+        // surjective means, that every item from set B has to be in relation with some item from A
+        // that means that every item from B must be a "second item" in the given relation
         int same;
         for(int m = 0; m < set_2.size; m++)
         {
             same = 0;
             for(int n = 0; n < relation.size; n++)
             {
-                if(strcmp(set_2.item[m], relation.item_b[n]) == 0)
+                if(strcmp(set_2.item[m], relation.item_b[n]) == 0) // checks if every the item is the same
                 {
                     same++;
                 }
             }
-            if(same == 0)
+            if(same == 0) // there must be at least one "same item" in the relation, otherwise it is not surjective
             {
                 printf("false\n");
                 return;
@@ -1343,9 +1381,9 @@ int main(int argc, char const *argv[])
 
     void bijective(set_t relation, set_t set_1, set_t set_2)
     {
-        if(function(relation) == false)
+        if(function(relation) == false) // checks if the relation is function
         {
-            printf("Error: Relation is not a function.\n");
+            printf("Error: Relation is not a function.\n"); 
             return;
         }
         
@@ -1355,14 +1393,14 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int j = 0; j < set_1.size; j++)
             {
-                if(strcmp(relation.item[i], set_1.item[j]) == 0)
+                if(strcmp(relation.item[i], set_1.item[j]) == 0) // checks if every "first item" from relation is in the set A
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n");
+                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
                 return;
             }
         }
@@ -1371,19 +1409,22 @@ int main(int argc, char const *argv[])
             is_in = false;
             for(int l = 0; l < set_2.size; l++)
             {
-                if(strcmp(relation.item_b[k], set_2.item[l]) == 0)
+                if(strcmp(relation.item_b[k], set_2.item[l]) == 0) // checks if every "second item" from relation is in the set B
                 {
                     is_in = true;
                 }
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n");
+                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
                 return;
             }
         }
 
-        bool injective = true;
+        // bijective means, that the function is "perfect" - every item has its counterpart from the other set =>
+        // => the function must be injective AND surjective
+
+        bool injective = true; // assumes its injective and proceeds to check (same way as in the injective function)
         int same_i;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1397,11 +1438,11 @@ int main(int argc, char const *argv[])
             }
             if(same_i != 1)
             {
-                injective = false;
+                injective = false; // the condition is broken == it is not injective
             }
         }
 
-        bool surjective = true;
+        bool surjective = true; // assumes it is surjective and checks...
         int same_s;
         for(int m = 0; m < set_2.size; m++)
         {
@@ -1415,11 +1456,11 @@ int main(int argc, char const *argv[])
             }
             if(same_s == 0)
             {
-                surjective = false;
+                surjective = false; // the condition is broken == it is not surjective
             }
         }
 
-        if(injective && surjective)
+        if(injective && surjective) // checks and prints the result
         {
             printf("true\n");
         } else {
