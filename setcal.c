@@ -236,7 +236,7 @@ int main(int argc, char const *argv[])
 
                    
 
-                    printf(" (%s %s)",temp_a,temp_b);
+                    //printf(" (%s %s)",temp_a,temp_b);
 
                     /* construct item in item array */
                     item_ctor(temp_a,temp_b,&a);
