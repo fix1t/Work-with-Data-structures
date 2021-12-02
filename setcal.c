@@ -316,7 +316,6 @@ int main(int argc, char const *argv[])
     void line_arr_ctor(line_arr *a)
     {
         a->len = 0;
-        /* Este nevieme kolko prvkov bude mat ten array - ukazatel */
         a->data = NULL;
     }
     /* initiate item array */
@@ -866,7 +865,7 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-    void s_union(set_t set_1, set_t set_2) // union je datovy typ, musi se jmenovat takhle
+    void s_union(set_t set_1, set_t set_2)
     {
         printf("S");
         for(int i = 0; i < set_1.size; i++)
