@@ -1,0 +1,1006 @@
+[1;32m[ OK ][0m Test ze zadani #1 (sets.txt)
+[1;31m[FAIL][0m Test ze zadani #2 (rel.txt)
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/assignment/rel.txt
+Predpokladany vystup:
+U dad mom girl boy man woman
+R (dad boy) (dad girl) (mom boy) (mom girl)
+R (dad man) (boy man) (mom woman) (girl woman)
+S boy girl
+true
+
+STDOUT:
+U dad mom girl boy man woman
+R (dad boy) (dad girl) (mom boy) (mom girl)
+R (dad man) (boy man) (mom woman) (girl woman)
+S boy girl
+
+STDERR:
+
+[1;32m[ OK ][0m Bez argumentu
+[1;32m[ OK ][0m Moc argumentu
+[1;32m[ OK ][0m Neexistujici soubor
+[1;32m[ OK ][0m Univerzum #01 Cisla ve jmenech prvku
+[1;32m[ OK ][0m Univerzum #02 Specialni znaky ve jmenech prvku
+[1;32m[ OK ][0m Univerzum #03 Maximalni delka jmena prvku
+[1;32m[ OK ][0m Univerzum #04 Vetsi nez maximalni delka jmena prvku
+[1;32m[ OK ][0m Univerzum #05 Prvek ma nazev prikazu 1
+[1;32m[ OK ][0m Univerzum #06 Prvek ma nazev prikazu 2
+[1;32m[ OK ][0m Univerzum #07 Prvek ma false
+[1;32m[ OK ][0m Univerzum #08 Opakovani prvku 1
+[1;32m[ OK ][0m Univerzum #09 Opakovani prvku 2
+[1;32m[ OK ][0m Univerzum #10 Zadna mezera za U
+[1;32m[ OK ][0m Mnozina #1 Prvky, ktere nepatri do univerza
+[1;32m[ OK ][0m Mnozina #2 Opakujici se prvek
+[1;32m[ OK ][0m Mnozina #3 Delsi prvek nez maximalni delka
+[1;32m[ OK ][0m Mnozina #4 Zadna mezera za S
+[1;32m[ OK ][0m Relace #1 Prvky, ktere nepatri do univerza 1
+[1;32m[ OK ][0m Relace #2 Prvky, ktere nepatri do univerza 2
+[1;32m[ OK ][0m Relace #3 Opakujici se prvek
+[1;32m[ OK ][0m Relace #4 Delsi prvek nez maximalni delka
+[1;32m[ OK ][0m Relace #5 Zadna mezera za R
+[1;32m[ OK ][0m Prikaz #1 Neexistujici
+[1;32m[ OK ][0m Prikaz #2 Zadna mezera za C
+[1;32m[ OK ][0m Obecne #1 Pouze univerzum
+[1;32m[ OK ][0m Obecne #2 Spatne poradi definic
+[1;32m[ OK ][0m Obecne #3 Prazdny radek
+[1;32m[ OK ][0m Obecne #4 Rozlisovani velikosti pismen
+[1;32m[ OK ][0m Obecne #5 2x univerzum
+[1;32m[ OK ][0m Obecne #6 Zadne univerzum
+[1;32m[ OK ][0m Obecne #7 Zadna mnozina nebo relace
+[1;31m[FAIL][0m Obecne #8 Zadny prikaz
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/general/no_command.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a b
+
+STDERR:
+
+[1;32m[ OK ][0m Obecne #9 Nevalidni pocatecni pismeno
+[1;32m[ OK ][0m Prikaz "empty" #1 Prazdna mnozina
+[1;32m[ OK ][0m Prikaz "empty" #2 Neprazdna mnozina
+[1;32m[ OK ][0m Prikaz "empty" #3 Relace
+[1;32m[ OK ][0m Prikaz "empty" #4 Neprazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "empty" #5 Prazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "empty" #6 Zadny parametr
+[1;32m[ OK ][0m Prikaz "empty" #7 Moc parametru
+[1;32m[ OK ][0m Prikaz "card" #1 Prazdna mnozina
+[1;32m[ OK ][0m Prikaz "card" #2 Mnozina o velikosti 1
+[1;32m[ OK ][0m Prikaz "card" #3 Mnozina o velikosti 5
+[1;32m[ OK ][0m Prikaz "card" #4 Relace
+[1;32m[ OK ][0m Prikaz "card" #5 Neprazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "card" #6 Prazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "card" #7 Zadny parametr
+[1;32m[ OK ][0m Prikaz "card" #8 Moc parametru
+[1;32m[ OK ][0m Prikaz "complement" #1 Prazdne univerzum, prazdna mnozina
+[1;32m[ OK ][0m Prikaz "complement" #2 Univerzum a mnozina stejne prvky
+[1;32m[ OK ][0m Prikaz "complement" #3 Univerzum a prazdna mnozina
+[1;32m[ OK ][0m Prikaz "complement" #4 Univerzum a neprazdna mnozina
+[1;32m[ OK ][0m Prikaz "complement" #5 Relace
+[1;32m[ OK ][0m Prikaz "complement" #6 Neprazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "complement" #7 Prazdne univerzum jako mnozina
+[1;32m[ OK ][0m Prikaz "complement" #8 Zadny parametr
+[1;32m[ OK ][0m Prikaz "complement" #9 Moc parametru
+[1;32m[ OK ][0m Prikaz "union" #01 Dve prazdne mnoziny
+[1;32m[ OK ][0m Prikaz "union" #02 Prvni prazdna, druha neprazdna
+[1;32m[ OK ][0m Prikaz "union" #03 Prvni neprazdna, druha prazdna
+[1;32m[ OK ][0m Prikaz "union" #04 Mnoziny bez pruniku
+[1;32m[ OK ][0m Prikaz "union" #05 Mnoziny s prunikem
+[1;32m[ OK ][0m Prikaz "union" #06 Mnozina sama se sebou
+[1;32m[ OK ][0m Prikaz "union" #07 Relace jako prvni parametr
+[1;32m[ OK ][0m Prikaz "union" #08 Relace jako druhy parametr
+[1;32m[ OK ][0m Prikaz "union" #09 Zadny parametr
+[1;32m[ OK ][0m Prikaz "union" #10 Jeden parametr
+[1;32m[ OK ][0m Prikaz "union" #11 Moc parametru
+[1;32m[ OK ][0m Prikaz "intersect" #1 Cela mnozina
+[1;32m[ OK ][0m Prikaz "intersect" #2 Casti mnoziny
+[1;32m[ OK ][0m Prikaz "intersect" #3 Prazdna mnozina 1
+[1;32m[ OK ][0m Prikaz "intersect" #4 Prazdna mnozina 2
+[1;32m[ OK ][0m Prikaz "intersect" #5 Relace
+[1;32m[ OK ][0m Prikaz "intersect" #6 Zadne parametry
+[1;32m[ OK ][0m Prikaz "intersect" #7 Moc parametru
+[1;31m[FAIL][0m Prikaz "intersect" #8 Malo parametru
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/intersect/too_few.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a
+S a b c
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "minus" #01 Prazdne mnoziny
+[1;32m[ OK ][0m Prikaz "minus" #02 Prvni prazdna, druha neprazdna
+[1;32m[ OK ][0m Prikaz "minus" #03 Prvni neprazdna, druha prazdna
+[1;32m[ OK ][0m Prikaz "minus" #04 Mnozina sama se sebou
+[1;32m[ OK ][0m Prikaz "minus" #05 Dve mnoziny bez pruniku
+[1;32m[ OK ][0m Prikaz "minus" #06 Dve mnoziny s prunikem 1
+[1;32m[ OK ][0m Prikaz "minus" #07 Dve mnoziny s prunikem 2
+[1;32m[ OK ][0m Prikaz "minus" #08 Relace jako prvni parametr
+[1;32m[ OK ][0m Prikaz "minus" #09 Relace jako druhy parametr
+[1;32m[ OK ][0m Prikaz "minus" #10 Zadny parametr
+[1;31m[FAIL][0m Prikaz "minus" #11 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/minus/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+S
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "minus" #12 Moc parametru
+[1;31m[FAIL][0m Prikaz "subseteq" #01 Prazdne mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/1.txt
+Predpokladany vystup:
+U a b
+S
+true
+
+STDOUT:
+U a b
+S
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #02 Prvni prazdna, druha neprazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/2.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+true
+
+STDOUT:
+U a b c
+S
+S a b
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #03 Prvni neprazdna, druha prazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/3.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+false
+
+STDOUT:
+U a b c
+S
+S a b
+False
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #04 Dve mnoziny bez pruniku
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/4.txt
+Predpokladany vystup:
+U a b c d
+S d c
+S a b
+false
+
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #05 Mnozina sama se sebou
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/5.txt
+Predpokladany vystup:
+U a b c
+S a b
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #06 Dve mnoziny s prunikem
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/6.txt
+Predpokladany vystup:
+U a b c
+S b c
+S a b
+false
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #07 Dve identicke mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/7.txt
+Predpokladany vystup:
+U a b c
+S b c a
+S a b c
+true
+
+STDOUT:
+U a b c
+S b c a
+S a b c
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #08 Prvni podmnozina druhe
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subseteq/8.txt
+Predpokladany vystup:
+U a b c d
+S b d a
+S a b c d
+true
+
+STDOUT:
+U a b c d
+S b d a
+S a b c d
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "subseteq" #09 Relace jako prvni parametr
+[1;32m[ OK ][0m Prikaz "subseteq" #10 Relace jako druhy parametr
+[1;32m[ OK ][0m Prikaz "subseteq" #11 Zadny parametr
+[1;31m[FAIL][0m Prikaz "subseteq" #12 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subseteq/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "subseteq" #13 Moc parametru
+[1;31m[FAIL][0m Prikaz "subset" #01 Prazdne mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/1.txt
+Predpokladany vystup:
+U a b
+S
+false
+
+STDOUT:
+U a b
+S
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #02 Prvni prazdna, druha neprazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/2.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+true
+
+STDOUT:
+U a b c
+S
+S a b
+False
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #03 Prvni neprazdna, druha prazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/3.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+false
+
+STDOUT:
+U a b c
+S
+S a b
+False
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #04 Dve mnoziny bez pruniku
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/4.txt
+Predpokladany vystup:
+U a b c d
+S d c
+S a b
+false
+
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #05 Mnozina sama se sebou
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/5.txt
+Predpokladany vystup:
+U a b c
+S a b
+false
+
+STDOUT:
+U a b c
+S a b
+False
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #06 Dve mnoziny s prunikem
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/6.txt
+Predpokladany vystup:
+U a b c
+S b c
+S a b
+false
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #07 Dve identicke mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/7.txt
+Predpokladany vystup:
+U a b c
+S b c a
+S a b c
+false
+
+STDOUT:
+U a b c
+S b c a
+S a b c
+False
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #08 Prvni podmnozina druhe
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/subset/8.txt
+Predpokladany vystup:
+U a b c d
+S b d a
+S a b c d
+true
+
+STDOUT:
+U a b c d
+S b d a
+S a b c d
+False
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "subset" #09 Relace jako prvni parametr
+[1;32m[ OK ][0m Prikaz "subset" #10 Relace jako druhy parametr
+[1;32m[ OK ][0m Prikaz "subset" #11 Zadny parametr
+[1;31m[FAIL][0m Prikaz "subset" #12 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subset/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+False
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "subset" #13 Moc parametru
+[1;31m[FAIL][0m Prikaz "equals" #01 Prazdne mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/1.txt
+Predpokladany vystup:
+U a b
+S
+true
+
+STDOUT:
+U a b
+S
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #02 Prvni prazdna, druha neprazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/2.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+false
+
+STDOUT:
+U a b c
+S
+S a b
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #03 Prvni neprazdna, druha prazdna
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/3.txt
+Predpokladany vystup:
+U a b c
+S
+S a b
+false
+
+STDOUT:
+U a b c
+S
+S a b
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #04 Dve mnoziny bez pruniku
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/4.txt
+Predpokladany vystup:
+U a b c d
+S d c
+S a b
+false
+
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #05 Mnozina sama se sebou
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/5.txt
+Predpokladany vystup:
+U a b c
+S a b
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #06 Dve mnoziny s prunikem
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/6.txt
+Predpokladany vystup:
+U a b c
+S b c
+S a b
+false
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #07 Dve identicke mnoziny
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/equals/7.txt
+Predpokladany vystup:
+U a b c
+S b c a
+S a b c
+true
+
+STDOUT:
+U a b c
+S b c a
+S a b c
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "equals" #08 Relace jako prvni parametr
+[1;32m[ OK ][0m Prikaz "equals" #09 Relace jako druhy parametr
+[1;32m[ OK ][0m Prikaz "equals" #10 Zadny parametr
+[1;31m[FAIL][0m Prikaz "equals" #11 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/equals/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "equals" #12 Moc parametru
+[1;31m[FAIL][0m Prikaz "reflexive" #1 Prazdne univerzum, prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/reflexive/1.txt
+Predpokladany vystup:
+U
+R
+true
+
+STDOUT:
+U
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "reflexive" #2 Prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/reflexive/2.txt
+Predpokladany vystup:
+U a b c
+R
+false
+
+STDOUT:
+U a b c
+R
+False
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "reflexive" #3 Reflexivni relace 1
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/reflexive/3.txt
+Predpokladany vystup:
+U a b c
+R (a a) (b b) (c c)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "reflexive" #4 Reflexivni relace 2
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/reflexive/4.txt
+Predpokladany vystup:
+U a b c
+R (a b) (b b) (c a) (a a) (c c)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "reflexive" #5 Nereflexivni relace
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/reflexive/5.txt
+Predpokladany vystup:
+U a b c
+R (a b) (b b) (c a) (a a)
+false
+
+STDOUT:
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "reflexive" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "reflexive" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "reflexive" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "reflexive" #9 Moc parametru
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/reflexive/too_many.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "symmetric" #1 Prazdne univerzum, prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/symmetric/1.txt
+Predpokladany vystup:
+U
+R
+true
+
+STDOUT:
+U
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "symmetric" #2 Prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/symmetric/2.txt
+Predpokladany vystup:
+U a b c
+R
+true
+
+STDOUT:
+U a b c
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "symmetric" #3 Symetricka relace 1
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/symmetric/3.txt
+Predpokladany vystup:
+U a b c
+R (a a) (b b)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "symmetric" #4 Symetricka relace 2
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/symmetric/4.txt
+Predpokladany vystup:
+U a b c
+R (a a) (b b) (b c) (c b)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "symmetric" #5 Nesymetricka relace
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/symmetric/5.txt
+Predpokladany vystup:
+U a b c
+R (a a) (b b) (b c)
+false
+
+STDOUT:
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "symmetric" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "symmetric" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "symmetric" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "symmetric" #9 Moc parametru
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/symmetric/too_many.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "antisymmetric" #1 Prazdne univerzum, prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/antisymmetric/1.txt
+Predpokladany vystup:
+U
+R
+true
+
+STDOUT:
+U
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "antisymmetric" #2 Prazna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/antisymmetric/2.txt
+Predpokladany vystup:
+U a b c
+R
+true
+
+STDOUT:
+U a b c
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "antisymmetric" #3 Antisymetricka relace 1
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/antisymmetric/3.txt
+Predpokladany vystup:
+U a b c
+R (a a) (c c) (c a)
+true
+
+STDOUT:
+U a b c
+R (a a) (c c) (c a)
+True
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "antisymmetric" #4 Antisymetricka relace 2
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/antisymmetric/4.txt
+Predpokladany vystup:
+U a b c
+R (a b) (c b) (a c)
+true
+
+STDOUT:
+U a b c
+R (a b) (c b) (a c)
+True
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "antisymmetric" #5 Neantisymetricka
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/antisymmetric/5.txt
+Predpokladany vystup:
+U a b c
+R (a b) (b c) (b a)
+false
+
+STDOUT:
+U a b c
+R (a b) (b c) (b a)
+True
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "antisymmetric" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "antisymmetric" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "antisymmetric" #8 Zadny parametr
+[1;32m[ OK ][0m Prikaz "antisymmetric" #9 Moc parametru
+[1;31m[FAIL][0m Prikaz "transitive" #1 Prazdne univerzum, prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/transitive/1.txt
+Predpokladany vystup:
+U
+R
+true
+
+STDOUT:
+U
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "transitive" #2 Prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/transitive/2.txt
+Predpokladany vystup:
+U a b c
+R
+true
+
+STDOUT:
+U a b c
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "transitive" #3 Tranzitivni relace 1
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/transitive/3.txt
+Predpokladany vystup:
+U a b c d
+R (a b) (c d)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "transitive" #4 Tranzitivni relace 2
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/transitive/4.txt
+Predpokladany vystup:
+U a b c d
+R (a b) (b c) (a c)
+true
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "transitive" #5 Netranzitivni relace
+Program vratil chybovy navratovy kod (-11) prestoze nemel!
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/transitive/5.txt
+Predpokladany vystup:
+U a b c d
+R (a b) (b c) (a c) (d a)
+false
+
+STDOUT:
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "transitive" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "transitive" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "transitive" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "transitive" #9 Moc parametru
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/transitive/too_many.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "domain" #1 Prazdne univerzum, prazdna relace
+[1;32m[ OK ][0m Prikaz "domain" #2 Relace 1
+[1;32m[ OK ][0m Prikaz "domain" #3 Relace 2
+[1;32m[ OK ][0m Prikaz "domain" #4 Relace 3
+[1;32m[ OK ][0m Prikaz "domain" #5 Relace 4
+[1;32m[ OK ][0m Prikaz "domain" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "domain" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "domain" #8 Zadny parametr
+[1;32m[ OK ][0m Prikaz "domain" #9 Moc parametru
+[1;32m[ OK ][0m Prikaz "codomain" #1 Prazdne univerzum, prazdna relace
+[1;32m[ OK ][0m Prikaz "codomain" #2 Relace 1
+[1;32m[ OK ][0m Prikaz "codomain" #3 Relace 2
+[1;32m[ OK ][0m Prikaz "codomain" #4 Relace 3
+[1;32m[ OK ][0m Prikaz "codomain" #5 Relace 4
+[1;32m[ OK ][0m Prikaz "codomain" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "codomain" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "codomain" #8 Zadny parametr
+[1;32m[ OK ][0m Prikaz "codomain" #9 Moc parametru
+[1;31m[FAIL][0m Prikaz "function" #1 Prazdne univerzum, prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/function/1.txt
+Predpokladany vystup:
+U
+R
+true
+
+STDOUT:
+U
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "function" #2 Prazdna relace
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/function/2.txt
+Predpokladany vystup:
+U a b c
+R
+true
+
+STDOUT:
+U a b c
+R
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "function" #3 Funkce 1
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/function/3.txt
+Predpokladany vystup:
+U a b c d
+R (a b) (c d) (d c) (b b)
+true
+
+STDOUT:
+U a b c d
+R (a b) (c d) (d c) (b b)
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "function" #4 Funkce 2
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/function/4.txt
+Predpokladany vystup:
+U a b c d
+R (a b)
+true
+
+STDOUT:
+U a b c d
+R (a b)
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "function" #5 Neni funkce
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/function/5.txt
+Predpokladany vystup:
+U a b c d
+R (a b) (b c) (d c) (a a)
+false
+
+STDOUT:
+U a b c d
+R (a b) (b c) (d c) (a a)
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "function" #6 Mnozina
+[1;32m[ OK ][0m Prikaz "function" #7 Univerzum
+[1;32m[ OK ][0m Prikaz "function" #8 Zadny parametr
+[1;32m[ OK ][0m Prikaz "function" #9 Moc parametru
+-- STATISTIKA --
+Zakladni reseni:
+Uspesnost: 133/191 (69.63%)
