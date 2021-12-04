@@ -45,6 +45,2038 @@ S a b
 STDERR:
 
 [1;32m[ OK ][0m Obecne #9 Nevalidni pocatecni pismeno
+[1;32m[ OK ][0m Obecne #10 Radek s mezerou
+[1;32m[ OK ][0m Obecne #11 Radek s mezerami
+[1;32m[ OK ][0m Obecne #12 Radek s tabem
+[1;32m[ OK ][0m Obecne #13 Radek s taby
+[1;32m[ OK ][0m Obecne #14 Radek s mezerami a taby
+[1;32m[ OK ][0m Pocet radku #1 999 radku
+[1;32m[ OK ][0m Pocet radku #2 1000 radku
+[1;31m[FAIL][0m Pocet radku #3 1001 radku
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/max_lines_count/3.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+false
+
+STDERR:
+
+[1;31m[FAIL][0m Pocet radku #4 1002 radku
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/max_lines_count/4.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+S a
+false
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "empty" #1 Prazdna mnozina
 [1;32m[ OK ][0m Prikaz "empty" #2 Neprazdna mnozina
 [1;32m[ OK ][0m Prikaz "empty" #3 Relace
@@ -85,9 +2117,35 @@ STDERR:
 [1;32m[ OK ][0m Prikaz "intersect" #3 Prazdna mnozina 1
 [1;32m[ OK ][0m Prikaz "intersect" #4 Prazdna mnozina 2
 [1;32m[ OK ][0m Prikaz "intersect" #5 Relace
-[1;32m[ OK ][0m Prikaz "intersect" #6 Zadne parametry
+[1;31m[FAIL][0m Prikaz "intersect" #6 Zadne parametry
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/intersect/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a
+S a b c
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "intersect" #7 Moc parametru
-[1;32m[ OK ][0m Prikaz "intersect" #8 Malo parametru
+[1;31m[FAIL][0m Prikaz "intersect" #8 Malo parametru
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/intersect/too_few.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+S a
+S a b c
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "minus" #01 Prazdne mnoziny
 [1;32m[ OK ][0m Prikaz "minus" #02 Prvni prazdna, druha neprazdna
 [1;32m[ OK ][0m Prikaz "minus" #03 Prvni neprazdna, druha prazdna
@@ -97,8 +2155,34 @@ STDERR:
 [1;32m[ OK ][0m Prikaz "minus" #07 Dve mnoziny s prunikem 2
 [1;32m[ OK ][0m Prikaz "minus" #08 Relace jako prvni parametr
 [1;32m[ OK ][0m Prikaz "minus" #09 Relace jako druhy parametr
-[1;32m[ OK ][0m Prikaz "minus" #10 Zadny parametr
-[1;32m[ OK ][0m Prikaz "minus" #11 Jeden parametr
+[1;31m[FAIL][0m Prikaz "minus" #10 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/minus/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+S
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "minus" #11 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/minus/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+S
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "minus" #12 Moc parametru
 [1;31m[FAIL][0m Prikaz "subseteq" #01 Prazdne mnoziny
 Vystup programu se neshoduje s predpokladanym vystupem!
@@ -214,8 +2298,29 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "subseteq" #09 Relace jako prvni parametr
 [1;32m[ OK ][0m Prikaz "subseteq" #10 Relace jako druhy parametr
-[1;32m[ OK ][0m Prikaz "subseteq" #11 Zadny parametr
-[1;32m[ OK ][0m Prikaz "subseteq" #12 Jeden parametr
+[1;31m[FAIL][0m Prikaz "subseteq" #11 Zadny parametr
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subseteq/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subseteq" #12 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subseteq/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "subseteq" #13 Moc parametru
 [1;31m[FAIL][0m Prikaz "subset" #01 Prazdne mnoziny
 Vystup programu se neshoduje s predpokladanym vystupem!
@@ -304,8 +2409,34 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "subset" #09 Relace jako prvni parametr
 [1;32m[ OK ][0m Prikaz "subset" #10 Relace jako druhy parametr
-[1;32m[ OK ][0m Prikaz "subset" #11 Zadny parametr
-[1;32m[ OK ][0m Prikaz "subset" #12 Jeden parametr
+[1;31m[FAIL][0m Prikaz "subset" #11 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subset/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+false
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "subset" #12 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/subset/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+false
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "subset" #13 Moc parametru
 [1;31m[FAIL][0m Prikaz "equals" #01 Prazdne mnoziny
 Vystup programu se neshoduje s predpokladanym vystupem!
@@ -420,8 +2551,29 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "equals" #08 Relace jako prvni parametr
 [1;32m[ OK ][0m Prikaz "equals" #09 Relace jako druhy parametr
-[1;32m[ OK ][0m Prikaz "equals" #10 Zadny parametr
-[1;32m[ OK ][0m Prikaz "equals" #11 Jeden parametr
+[1;31m[FAIL][0m Prikaz "equals" #10 Zadny parametr
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/equals/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
+[1;31m[FAIL][0m Prikaz "equals" #11 Jeden parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/equals/one_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+S a
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "equals" #12 Moc parametru
 [1;31m[FAIL][0m Prikaz "reflexive" #1 Prazdne univerzum, prazdna relace
 Vystup programu se neshoduje s predpokladanym vystupem!
@@ -483,7 +2635,16 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "reflexive" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "reflexive" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "reflexive" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "reflexive" #8 Zadny parametr
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/reflexive/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
 [1;31m[FAIL][0m Prikaz "reflexive" #9 Moc parametru
 Program nevratil na STDERR zadnou chybovou zpravu!
 
@@ -568,7 +2729,16 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "symmetric" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "symmetric" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "symmetric" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "symmetric" #8 Zadny parametr
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/symmetric/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
 [1;31m[FAIL][0m Prikaz "symmetric" #9 Moc parametru
 Program nevratil na STDERR zadnou chybovou zpravu!
 
@@ -628,7 +2798,19 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "antisymmetric" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "antisymmetric" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "antisymmetric" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "antisymmetric" #8 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/antisymmetric/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+R (a a)
+true
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "antisymmetric" #9 Moc parametru
 [1;31m[FAIL][0m Prikaz "transitive" #1 Prazdne univerzum, prazdna relace
 Vystup programu se neshoduje s predpokladanym vystupem!
@@ -704,7 +2886,16 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "transitive" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "transitive" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "transitive" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "transitive" #8 Zadny parametr
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/transitive/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+
+STDERR:
+
 [1;31m[FAIL][0m Prikaz "transitive" #9 Moc parametru
 Program nevratil na STDERR zadnou chybovou zpravu!
 
@@ -722,7 +2913,20 @@ STDERR:
 [1;32m[ OK ][0m Prikaz "domain" #5 Relace 4
 [1;32m[ OK ][0m Prikaz "domain" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "domain" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "domain" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "domain" #8 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/domain/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+R (b a)
+S b
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "domain" #9 Moc parametru
 [1;32m[ OK ][0m Prikaz "codomain" #1 Prazdne univerzum, prazdna relace
 [1;32m[ OK ][0m Prikaz "codomain" #2 Relace 1
@@ -731,7 +2935,20 @@ STDERR:
 [1;32m[ OK ][0m Prikaz "codomain" #5 Relace 4
 [1;32m[ OK ][0m Prikaz "codomain" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "codomain" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "codomain" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "codomain" #8 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/codomain/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b c
+R (b a)
+S a
+
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "codomain" #9 Moc parametru
 [1;32m[ OK ][0m Prikaz "function" #1 Prazdne univerzum, prazdna relace
 [1;32m[ OK ][0m Prikaz "function" #2 Prazdna relace
@@ -754,8 +2971,88 @@ STDERR:
 
 [1;32m[ OK ][0m Prikaz "function" #6 Mnozina
 [1;32m[ OK ][0m Prikaz "function" #7 Univerzum
-[1;32m[ OK ][0m Prikaz "function" #8 Zadny parametr
+[1;31m[FAIL][0m Prikaz "function" #8 Zadny parametr
+Program vratil uspesne dokonceni (kod 0) prestoze nemel!
+Program nevratil na STDERR zadnou chybovou zpravu!
+
+Argumenty: tests/function/no_param.txt
+Predpokladany vystup:
+
+STDOUT:
+U a b
+R (a a)
+true
+STDERR:
+
 [1;32m[ OK ][0m Prikaz "function" #9 Moc parametru
+[1;31m[FAIL][0m Prikaz "surjective"
+Vystup programu se neshoduje s predpokladanym vystupem!
+
+Argumenty: tests/surjective/1.txt
+Predpokladany vystup:
+U a b c x y z w
+S a b c
+S x y z
+S x y
+S x y z w
+S
+R (x y) (a x) (b z) (c y)
+R (a x) (b a) (c z)
+R (a x) (b y)
+R (a x) (a y) (b y) (c z)
+R
+R (a x) (b y) (c x)
+R (a x) (b y) (c z)
+false
+false
+false
+false
+false
+true
+false
+false
+false
+false
+true
+true
+false
+
+STDOUT:
+U a b c x y z w
+S a b c
+S x y z
+S x y
+S x y z w
+S
+R (x y) (a x) (b z) (c y)
+R (a x) (b a) (c z)
+R (a x) (b y)
+R (a x) (a y) (b y) (c z)
+R
+R (a x) (b y) (c x)
+R (a x) (b y) (c z)
+false
+false
+false
+true
+false
+true
+false
+false
+false
+false
+true
+true
+false
+
+STDERR:
+
+[1;32m[ OK ][0m Prikaz "injective" #1 Obsahly test
+[1;32m[ OK ][0m Prikaz "injective" #2 Malo parametru
+[1;32m[ OK ][0m Prikaz "injective" #3 Moc parametru
+[1;32m[ OK ][0m Prikaz "injective" #4 Spatne typy parametru
+[1;32m[ OK ][0m Prikaz "injective" #5 Spatne typy parametru
+[1;32m[ OK ][0m Prikaz "bijective"
 -- STATISTIKA --
 Zakladni reseni:
-Uspesnost: 150/191 (78.53%)
+Uspesnost: 146/207 (70.53%)

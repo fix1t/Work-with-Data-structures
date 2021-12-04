@@ -64,11 +64,11 @@ void domain(set_t relation);
 
 void codomain(set_t relation);
 
-bool injective(set_t relation, set_t set_1, set_t set_2);
+void injective(set_t relation, set_t set_1, set_t set_2);
 
-bool surjective(set_t relation, set_t set_1, set_t set_2);
+void surjective(set_t relation, set_t set_1, set_t set_2);
 
-bool bijective(set_t relation, set_t set_1, set_t set_2);
+void bijective(set_t relation, set_t set_1, set_t set_2);
 
 void minus(set_t  set_1, set_t set_2);
 
@@ -830,8 +830,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
 
-                if(! injective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a);
+                injective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         if(!(strcmp(command,"surjective")))
@@ -845,8 +845,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
 
-                if(! surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a);
+                surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         if(!(strcmp(command,"bijective")))
@@ -860,8 +860,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
                     
-                if(! bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a); 
+                bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         not_valid(a);
@@ -1290,10 +1290,13 @@ int main(int argc, char const *argv[])
     }
 
 
-    bool injective(set_t relation, set_t set_1, set_t set_2)
+    void injective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n");
+            return;
+        }
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1307,7 +1310,10 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1320,10 +1326,18 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
-        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once
+        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once and every "first item" must be used
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1338,17 +1352,20 @@ int main(int argc, char const *argv[])
             if(same != 1) // if there is different number of same items than 1, print false and return
             {
                 printf("false\n");
-                return true;
+                return;
             }
         }
+
         printf("true\n");
-        return true;
     }
 
-    bool surjective(set_t relation, set_t set_1, set_t set_2)
+    void surjective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n");
+            return;
+        }
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1362,7 +1379,10 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1375,7 +1395,10 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
         // surjective means, that every item from set B has to be in relation with some item from A
@@ -1394,17 +1417,21 @@ int main(int argc, char const *argv[])
             if(same == 0) // there must be at least one "same item" in the relation, otherwise it is not surjective
             {
                 printf("false\n");
-                return true;
+                return;
             }
         }
+
         printf("true\n");
-        return true;
+        
     }
 
-    bool bijective(set_t relation, set_t set_1, set_t set_2)
+    void bijective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n"); 
+            return;
+        }
         
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1418,7 +1445,10 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1431,13 +1461,21 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
         // bijective means, that the function is "perfect" - every item has its counterpart from the other set =>
         // => the function must be injective AND surjective
-
-        bool injective = true; // assumes its injective and proceeds to check (same way as in the injective function)
+        
+        // checks if it is injective:
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same_i;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1451,11 +1489,12 @@ int main(int argc, char const *argv[])
             }
             if(same_i != 1)
             {
-                injective = false; // the condition is broken == it is not injective
+                printf("false\n"); // the condition is broken => it is not injective => return false
+                return; 
             }
         }
 
-        bool surjective = true; // assumes it is surjective and checks...
+        // checks if it is surjective:
         int same_s;
         for(int m = 0; m < set_2.size; m++)
         {
@@ -1469,15 +1508,10 @@ int main(int argc, char const *argv[])
             }
             if(same_s == 0)
             {
-                surjective = false; // the condition is broken == it is not surjective
+                printf("false\n"); // the condition is broken => it is not surjective => return false
+                return;
             }
         }
 
-        if(injective && surjective) // checks and prints the result
-        {
-            printf("true\n");
-        } else {
-            printf("false\n");
-        }
-        return true;
+        printf("true\n"); // all conditions passed, it is bijective, print true
     }
