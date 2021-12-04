@@ -115,6 +115,9 @@ int main(int argc, char const *argv[])
     int U_count =0,C_count =0, S_count = 0, R_count =0;
     while (c != EOF)
     {
+        if ((U_count + C_count + S_count + R_count) > 1000 )    //if max line length is exceeded
+            not_valid(&a);
+        
         c = fgetc(a.fp);
         
         switch (c)
