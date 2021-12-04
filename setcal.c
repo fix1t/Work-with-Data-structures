@@ -6,8 +6,8 @@
 #include <ctype.h>
 
 typedef struct {
-    int size;
-    char **item;
+    int size;           //number of items
+    char **item;        //item array
     char **item_b;
     bool valid;
     bool is_set;
@@ -16,7 +16,7 @@ typedef struct {
 typedef struct {
     FILE*fp;
     int len;
-    set_t *data;
+    set_t *data;        //data line
 } line_arr;
 
 void line_arr_ctor(line_arr *a);
@@ -103,9 +103,15 @@ int main(int argc, char const *argv[])
     a.fp = fopen(argv[1] ,"r");                         //file pointer
 
     //variabales used in reading cycle
-    char c;
-    char temp_a[32];
-    char temp_b[32];
+    char c = '\0';                                       //initializing char
+    char temp_a[31];
+    char temp_b[31];
+    for (int i = 0; i < 32; i++)                        //init temp array
+    {
+        temp_a[i]='\0';
+        temp_b[i]='\0';
+    }
+        
     int U_count =0,C_count =0, S_count = 0, R_count =0;
     while (c != EOF)
     {
@@ -120,8 +126,11 @@ int main(int argc, char const *argv[])
                 not_valid(&a);
             if (S_count || C_count || R_count)      //check order
                 not_valid(&a);
-                                                    //continue to create line as set ...
+                
+            //continue to create line as set ...
+
             line_arr_inc(&a);
+            a.data[a.len-1].is_set=true;
             putchar(c);
             c = fgetc(a.fp);
             
@@ -135,8 +144,7 @@ int main(int argc, char const *argv[])
             if (c != ' ')                           //after capital letter must follow ' '
                     not_valid(&a);
 
-            for (int i = 0; i < 30; i++)            //temporary array set up
-                    temp_a[i]='\0';
+
 
             while (c != EOF)                        //read items
             {
@@ -147,10 +155,10 @@ int main(int argc, char const *argv[])
                 
                 for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
                 {
-                    temp_a[i] = c;
-                    c = fgetc(a.fp); 
                     if (i>29)                                           //if input is longer than 30 - > not valid input
                         not_valid(&a);
+                    temp_a[i] = c;
+                    c = fgetc(a.fp); 
                 }
 
                 if (temp_a[0] != '\0')
@@ -165,7 +173,6 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=true;
             is_valid_u(&a.data[0]);                     //check validity of universsum
                 
             if(a.data[a.len-1].size != 0)               //if not valid, crash program
@@ -183,21 +190,19 @@ int main(int argc, char const *argv[])
                 not_valid(&a);
             
             line_arr_inc(&a);
+            a.data[a.len-1].is_set = true;
             putchar(c);
             c = fgetc(a.fp);
             
             if (c == '\n')                          //if its an emty set break
             {   
                 putchar(c);
-                a.data[a.len-1].is_set = true;
                 break;
             }
 
             if (c != ' ')                           //after capital letter must follow ' '
                     not_valid(&a);
 
-            for (int i = 0; i < 30; i++)            //temporary array set up
-                    temp_a[i]='\0';
 
             while (c != EOF)                        //read items
             {
@@ -208,10 +213,10 @@ int main(int argc, char const *argv[])
                 
                 for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
                 {
-                    temp_a[i] = c;
-                    c = fgetc(a.fp); 
                     if (i>29)                                           //if input is longer than 30 - > not valid input
                         not_valid(&a);
+                    temp_a[i] = c;
+                    c = fgetc(a.fp); 
                 }
 
                 if (temp_a[0] != '\0')
@@ -226,7 +231,6 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=true;
             
             is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity of universsum
                 
@@ -243,6 +247,7 @@ int main(int argc, char const *argv[])
                 not_valid(&a);
           
             line_arr_inc(&a);                               //realloc line array & set it up                
+            a.data[a.len-1].is_set = false;
             putchar(c);
             c = fgetc(a.fp);
  
@@ -257,7 +262,7 @@ int main(int argc, char const *argv[])
 
             while (c != EOF)                                //read items
             {
-                for (int i = 0; i < 30; i++)                            //temp arrs set up
+                for (int i = 0; temp_a[i]!= '\0' && temp_b[i] !='\0'; i++)                            //temp arrs set up
                 {
                     temp_a[i]='\0';
                     temp_b[i]='\0';
@@ -267,9 +272,9 @@ int main(int argc, char const *argv[])
                 {
                     for (int i = 0; (c = fgetc(a.fp)) != ' '; i++)      //get character & save char, until word ends
                     {
-                        temp_a[i]=c;
                         if (i>29)                                       //max length exceeded, crash 
                             not_valid(&a);
+                        temp_a[i]=c;
                     }
 
                     for (int i = 0; (c = fgetc(a.fp)) != ')'; i++)      //until ')' read another word
@@ -279,9 +284,9 @@ int main(int argc, char const *argv[])
                             i--;
                             continue;
                         }
-                        temp_b[i]=c;
                         if (i>29)
                             not_valid(&a);
+                        temp_b[i]=c;
                     }
 
                     item_ctor(temp_a,temp_b,&a);                        //construct item in item array
@@ -295,7 +300,6 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=false;                               
             is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity
             if (!a.data[a.len-1].valid)                                 //if valid = false, crash
                 not_valid(&a);
@@ -316,12 +320,12 @@ int main(int argc, char const *argv[])
             for (int i = 0; i < 30; i++)
                 command[i]='\0';
             fscanf(a.fp,"%s",command);                              //read command
-
-            call_function(command,&a);      
+            call_function(command,&a);                              //after functio '\n' or EOF follows, else wrong input                     
             c=fgetc(a.fp);
             if (c == '\n'  || c == EOF)
                 break;
-            not_valid(&a);                                    
+            not_valid(&a);           
+            break;                         
         
 
         default:
@@ -378,23 +382,25 @@ int main(int argc, char const *argv[])
         a->len++;                                           //length ++
     }
     // increases item arrays (both a and b) by 1, returns NULL if unsuccessful
-    void *item_arr_inc(set_t *item_structure)
+    void *item_arr_inc(set_t *item_array)
     {
-        item_structure->size++;                                                             //increase size
-        char **p = realloc(item_structure->item, (item_structure->size)*sizeof(char**));    //increase item array
+        item_array->size++;                                                             //increase size
+        char **p = realloc(item_array->item, (item_array->size)*sizeof(char**));    //increase item array
         if (p == NULL)
                 return NULL;
-        char **k = realloc(item_structure->item_b, (item_structure->size)*sizeof(char**));  //increase item array for item_b   
-        if (k == NULL)
+        if (!item_array->is_set)
+        {
+            char **k = realloc(item_array->item_b, (item_array->size)*sizeof(char**));  //increase item array for item_b   
+            if (k == NULL)
                 return NULL;
-        item_structure->item=p;
-        return item_structure->item_b=k;
+            item_array->item_b=k;
+        }
+        return item_array->item=p;
     }
     // adds item(s) to an array
     // calls item_arr_inc to reallocate memory for new item, than copies temp items to allocated memory
     void item_ctor(const char *tmp_a,const char *tmp_b, line_arr *a)
     {
-
         if(item_arr_inc(&a->data[a->len-1]) == NULL)                    //increase item array and set it up
             alloc_error(a);
             
@@ -403,6 +409,7 @@ int main(int argc, char const *argv[])
         char * p = malloc((strlen(tmp_a)+1)*sizeof(char));              //malloc array for item
         if (p==NULL)
             alloc_error(a);
+
         strcpy(p, tmp_a);
         a->data[a->len-1].item[i-1] = p;
 
@@ -414,8 +421,6 @@ int main(int argc, char const *argv[])
             strcpy(k, tmp_b);
             a->data[a->len-1].item_b[i-1] = k;
         }
-        else
-            a->data[a->len-1].item_b[i-1] = NULL;
     }
 
 //FUNCTIONS TO CLEAR MEMORY
@@ -427,9 +432,6 @@ int main(int argc, char const *argv[])
                 free(data->item[i]);
                 if (!data->is_set)
                     free(data->item_b[i]);
-                
-                
-                
             }        
     }
     //free item array and line array
@@ -622,7 +624,7 @@ int main(int argc, char const *argv[])
 //Calls function, based on function input scans the needed parameters, checks if parameters are valid and goes to correct function 
     void call_function(char *command, line_arr *a)
     {
-        int line,line2,line3;
+        int line=0,line2=0,line3=0;
         if(!(strcmp(command,"empty")))
             {
                 fscanf(a->fp,"%d",&line);
