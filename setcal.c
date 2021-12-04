@@ -1252,7 +1252,7 @@ int main(int argc, char const *argv[])
     {
         if(function(relation) == false) // checks if the relation is function
         {
-            printf("Error: Relation is not a function.\n");
+            printf("false\n");
             return;
         }
 
@@ -1269,7 +1269,7 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
@@ -1285,12 +1285,17 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
 
-        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once
+        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once and every "first item" must be used
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1316,8 +1321,10 @@ int main(int argc, char const *argv[])
     {
         if(function(relation) == false) // checks if the relation is function
         {
-            printf("Error: Relation is not a function.\n");
+            printf("false a\n");
             return;
+        } else {
+            printf("vratila tru\n");
         }
 
         bool is_in;
@@ -1333,7 +1340,7 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
@@ -1349,7 +1356,7 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
@@ -1382,7 +1389,7 @@ int main(int argc, char const *argv[])
     {
         if(function(relation) == false) // checks if the relation is function
         {
-            printf("Error: Relation is not a function.\n"); 
+            printf("false\n"); 
             return;
         }
         
@@ -1399,7 +1406,7 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
@@ -1415,15 +1422,20 @@ int main(int argc, char const *argv[])
             }
             if(!is_in)
             {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
+                printf("false\n"); // if not, return false
                 return;
             }
         }
 
         // bijective means, that the function is "perfect" - every item has its counterpart from the other set =>
         // => the function must be injective AND surjective
-
-        bool injective = true; // assumes its injective and proceeds to check (same way as in the injective function)
+        
+        // checks if it is injective:
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same_i;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1437,11 +1449,12 @@ int main(int argc, char const *argv[])
             }
             if(same_i != 1)
             {
-                injective = false; // the condition is broken == it is not injective
+                printf("false\n"); // the condition is broken => it is not injective => return false
+                return; 
             }
         }
 
-        bool surjective = true; // assumes it is surjective and checks...
+        // checks if it is surjective:
         int same_s;
         for(int m = 0; m < set_2.size; m++)
         {
@@ -1455,15 +1468,11 @@ int main(int argc, char const *argv[])
             }
             if(same_s == 0)
             {
-                surjective = false; // the condition is broken == it is not surjective
+                printf("false\n"); // the condition is broken => it is not surjective => return false
+                return;
             }
         }
 
-        if(injective && surjective) // checks and prints the result
-        {
-            printf("true\n");
-        } else {
-            printf("false\n");
-        }
+        printf("true\n"); // all conditions passed, it is bijective, print true
 
     }
