@@ -1351,8 +1351,8 @@ int main(int argc, char const *argv[])
                 return true;
             }
         }
-
         printf("true\n");
+        return true;
     }
 
     bool surjective(set_t relation, set_t set_1, set_t set_2)
@@ -1408,6 +1408,7 @@ int main(int argc, char const *argv[])
             }
         }
         printf("true\n");
+        return true;
     }
 
     bool bijective(set_t relation, set_t set_1, set_t set_2)
@@ -1488,5 +1489,5 @@ int main(int argc, char const *argv[])
         } else {
             printf("false\n");
         }
-
+        return true;
     }
