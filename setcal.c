@@ -64,11 +64,11 @@ void domain(set_t relation);
 
 void codomain(set_t relation);
 
-void injective(set_t relation, set_t set_1, set_t set_2);
+bool injective(set_t relation, set_t set_1, set_t set_2);
 
-void surjective(set_t relation, set_t set_1, set_t set_2);
+bool surjective(set_t relation, set_t set_1, set_t set_2);
 
-void bijective(set_t relation, set_t set_1, set_t set_2);
+bool bijective(set_t relation, set_t set_1, set_t set_2);
 
 void minus(set_t  set_1, set_t set_2);
 
@@ -91,14 +91,18 @@ bool function(set_t relation);
 
 int main(int argc, char const *argv[])
 {
+    //check correct starting input
     if (argc == 2)
        check_txt(argv[1]); 
     else
         usage();
 
-    line_arr a;
+    
+    line_arr a;                                         //create line array
     line_arr_ctor(&a);
-    a.fp = fopen(argv[1] ,"r");
+    a.fp = fopen(argv[1] ,"r");                         //file pointer
+
+    //variabales used in reading cycle
     char c;
     char temp_a[32];
     char temp_b[32];
@@ -110,76 +114,122 @@ int main(int argc, char const *argv[])
         switch (c)
         {
         case 'U':
-            if (++U_count != 1)
-                not_valid(&a);
-            /* check the order */
-            if (S_count || C_count || R_count)
-                not_valid(&a);
-            S_count--;
-            /* continue to create line as set ...*/
-
-        case 'S':
-            S_count++;
-            /* check the order */
-            if (!U_count || R_count || C_count)
-                not_valid(&a);
             
+            if (++U_count != 1)                     //if there is more then one universum 
+                not_valid(&a);
+            if (S_count || C_count || R_count)      //check order
+                not_valid(&a);
+                                                    //continue to create line as set ...
             line_arr_inc(&a);
             putchar(c);
             c = fgetc(a.fp);
             
-            if (c == '\n')
-            {
+            if (c == '\n')                          //if its an emty set break
+            {   
                 putchar(c);
                 a.data[a.len-1].is_set = true;
                 break;
             }
 
-            /* after capital letter must follow ' ' */
-            if (c != ' ')
-                not_valid(&a);
+            if (c != ' ')                           //after capital letter must follow ' '
+                    not_valid(&a);
 
-            /* temporary array set up */
-            for (int i = 0; i < 30; i++)
-                temp_a[i]='\0';
+            for (int i = 0; i < 30; i++)            //temporary array set up
+                    temp_a[i]='\0';
 
-            /* read items */
-            while (c != EOF)
+            while (c != EOF)                        //read items
             {
-                c = fgetc(a.fp);
+                c = fgetc(a.fp);    
                 
-                for (int i = 0; temp_a[i] != '\0'; i++)
+                for (int i = 0; temp_a[i] != '\0'; i++)                 //shortened string reset
                     temp_a[i]='\0';
                 
-                for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++)
+                for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
                 {
                     temp_a[i] = c;
                     c = fgetc(a.fp); 
-                    if (i>29)
+                    if (i>29)                                           //if input is longer than 30 - > not valid input
                         not_valid(&a);
                 }
 
                 if (temp_a[0] != '\0')
                 {
-                    printf(" %s",temp_a);
-                    /* construct item in item array */
-                    item_ctor(temp_a,NULL,&a);
+                    printf(" %s",temp_a);                               //if input is not empt print &
+                    item_ctor(temp_a,NULL,&a);                          //construct item in item array
                 }
                 
-                if (c == '\n')
+                if (c == '\n')                                          //break line, continue to check validity
                 {
                     putchar(c);
                     break;
                 }
             }
             a.data[a.len-1].is_set=true;
-            /* check validity of universsum */
-            if (a.len == 1)
-                is_valid_u(&a.data[0]);
-            else
-                is_valid(&a.data[0], &a.data[a.len-1]);
-            /* if not valid, crash program */    
-            if(a.data[a.len-1].size != 0)
+            is_valid_u(&a.data[0]);                     //check validity of universsum
+                
+            if(a.data[a.len-1].size != 0)               //if not valid, crash program
+            {
+                if (!a.data[a.len-1].valid)
+                    not_valid(&a);
+            }
+
+            break;
+
+
+        case 'S':
+            S_count++;
+            if (!U_count || R_count || C_count)     //check the order
+                not_valid(&a);
+            
+            line_arr_inc(&a);
+            putchar(c);
+            c = fgetc(a.fp);
+            
+            if (c == '\n')                          //if its an emty set break
+            {   
+                putchar(c);
+                a.data[a.len-1].is_set = true;
+                break;
+            }
+
+            if (c != ' ')                           //after capital letter must follow ' '
+                    not_valid(&a);
+
+            for (int i = 0; i < 30; i++)            //temporary array set up
+                    temp_a[i]='\0';
+
+            while (c != EOF)                        //read items
+            {
+                c = fgetc(a.fp);    
+                
+                for (int i = 0; temp_a[i] != '\0'; i++)                 //shortened string reset
+                    temp_a[i]='\0';
+                
+                for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
+                {
+                    temp_a[i] = c;
+                    c = fgetc(a.fp); 
+                    if (i>29)                                           //if input is longer than 30 - > not valid input
+                        not_valid(&a);
+                }
+
+                if (temp_a[0] != '\0')
+                {
+                    printf(" %s",temp_a);                               //if input is not empt print &
+                    item_ctor(temp_a,NULL,&a);                          //construct item in item array
+                }
+                
+                if (c == '\n')                                          //break line, continue to check validity
+                {
+                    putchar(c);
+                    break;
+                }
+            }
+            a.data[a.len-1].is_set=true;
+            
+            is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity of universsum
+                
+            if(a.data[a.len-1].size != 0)                               //if not valid, crash program        
             {
                 if (!a.data[a.len-1].valid)
                     not_valid(&a);
@@ -187,89 +237,87 @@ int main(int argc, char const *argv[])
             break;
 
         case 'R':
-            /* check the order */
             R_count++;
-            if (!U_count || C_count)
+            if (!U_count || C_count)                        //check the order
                 not_valid(&a);
           
-            line_arr_inc(&a);  
+            line_arr_inc(&a);                               //realloc line array & set it up                
             putchar(c);
             c = fgetc(a.fp);
  
-            if (c == '\n')
+            if (c == '\n')                                  //if empty break
             {
                 putchar(c);
                 break;
             }
-            /* after capital letter must follow ' ' */
-            if (c != ' ')
+            
+            if (c != ' ')                                   //after capital letter must follow ' '
                 not_valid(&a);
 
-            while (c != EOF)
+            while (c != EOF)                                //read items
             {
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 30; i++)                            //temp arrs set up
                 {
                     temp_a[i]='\0';
                     temp_b[i]='\0';
                 }
-                /* relation - (x y) - starts with '(' , save without brackets  */
-                if (c == '(')
+                
+                if (c == '(')                                           //relation - (x y) - starts with '(' , save without brackets 
                 {
-                    for (int i = 0; (c = fgetc(a.fp)) != ' '; i++)
+                    for (int i = 0; (c = fgetc(a.fp)) != ' '; i++)      //get character & save char, until word ends
                     {
                         temp_a[i]=c;
-                        if (i>30)
+                        if (i>29)                                       //max length exceeded, crash 
                             not_valid(&a);
                     }
 
-                    for (int i = 0; (c = fgetc(a.fp)) != ')'; i++)
+                    for (int i = 0; (c = fgetc(a.fp)) != ')'; i++)      //until ')' read another word
                     {
-                        if (c == ' ')
+                        if (c == ' ')                                   //forgive ' ' between words - if it is in the word - check_valid will uncover 
                         {
                             i--;
                             continue;
                         }
                         temp_b[i]=c;
-                        if (i>30)
+                        if (i>29)
                             not_valid(&a);
                     }
 
-                   
+                    item_ctor(temp_a,temp_b,&a);                        //construct item in item array
 
-
-                    /* construct item in item array */
-                    item_ctor(temp_a,temp_b,&a);
                     printf(" (%s %s)",a.data[a.len-1].item[a.data[a.len-1].size-1],a.data[a.len-1].item_b[a.data[a.len-1].size-1]);
-                }
+                }                                                       //print from memory
                 
-                if ((c=fgetc(a.fp)) == '\n')
+                if ((c=fgetc(a.fp)) == '\n')                            //new line - break 
                 {
                     putchar(c);
                     break;
                 }
             }
-            a.data[a.len-1].is_set=false;
-            /* check validity */
-            is_valid(&a.data[0], &a.data[a.len-1]);
-            if (!a.data[a.len-1].valid)
+            a.data[a.len-1].is_set=false;                               
+            is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity
+            if (!a.data[a.len-1].valid)                                 //if valid = false, crash
                 not_valid(&a);
             break;
 
         case 'C':
             C_count++;
-            /* check the order */
-            if (!U_count || !(S_count || R_count))
-                not_valid(&a);            
-            if ((c = fgetc(a.fp)) != ' ')
+            if (!U_count || !(S_count || R_count))                      //check the order
                 not_valid(&a);
-            while (c!= EOF)
+            c = fgetc(a.fp);
+            if (c == '\n')                                              //command line cannot be empty
+                not_valid(&a);
+            
+            if (c != ' ')                                               //' ' must follow 
+                not_valid(&a);  
+            while (c!= EOF)                                         
             {
-                char command[20];
+                char command[20];                                       
                 for (int i = 0; i < 30; i++)
                     command[i]='\0';
-                fscanf(a.fp,"%s",command);
+                fscanf(a.fp,"%s",command);                              //read command
 
-                call_function(command,&a);
+                call_function(command,&a);                              
 
                 if ((c=fgetc(a.fp)) == '\n')
                     break;
@@ -280,22 +328,20 @@ int main(int argc, char const *argv[])
         default:
         if(c  == EOF)
         {
-        /* if no U or S/R was entered */
-            if (!U_count || !(S_count || R_count) )
+        
+            if (!U_count || !(S_count || R_count))          //if no U or S/R was entered
                 not_valid(&a);
-        /* if U entered but no S/R */
-            if (U_count && !(S_count || R_count))
+            if (U_count && !(S_count || R_count))           //if U entered but no S/R
                 not_valid(&a);
-        /* if C entered but no S/R */
-            if (C_count && !(S_count || R_count))
+            if (C_count && !(S_count || R_count))           //if C entered but no S/R
                 not_valid(&a);
 
-        /* free allocated memory & close txt file*/
+            //free allocated memory & close txt file
             line_arr_dtor(&a);
             fclose(a.fp);
             return 0;
         }    
-        /* some other character was entered at the beggining of the line */                   
+        //some other character was entered at the beggining of the line
         not_valid(&a);
         break;
         }
@@ -754,7 +800,10 @@ int main(int argc, char const *argv[])
                 
                 if (a->data[line-1].is_set)
                     not_valid(a);
-                function(a->data[line-1]);
+                if(function(a->data[line-1]))
+                    printf("true");
+                else
+                    printf("false");
                 return;            
             } 
         if(!(strcmp(command,"domain")))
@@ -790,7 +839,9 @@ int main(int argc, char const *argv[])
                 
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
-                injective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
+                if(! injective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
+                    not_valid(a);
                 return;            
             } 
         if(!(strcmp(command,"surjective")))
@@ -803,7 +854,9 @@ int main(int argc, char const *argv[])
                 
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
-                surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
+                if(! surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
+                    not_valid(a);
                 return;            
             } 
         if(!(strcmp(command,"bijective")))
@@ -816,7 +869,9 @@ int main(int argc, char const *argv[])
                 
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
-                bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+                    
+                if(! bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
+                    not_valid(a); 
                 return;            
             } 
         not_valid(a);
@@ -868,7 +923,6 @@ int main(int argc, char const *argv[])
     void s_union(set_t set_1, set_t set_2) // since union is a data type, the function name must be a little different
     {
         printf("S");
-
         for(int i = 0; i < set_1.size; i++)
         {
             printf(" %s", set_1.item[i]); // prints every item in the set_1
@@ -895,7 +949,6 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-
     void intersect(set_t set_1, set_t set_2)
     {
         printf("S");
@@ -911,7 +964,6 @@ int main(int argc, char const *argv[])
                 }
             }
         }
-
         printf("\n");
     }
 
@@ -957,12 +1009,12 @@ int main(int argc, char const *argv[])
                 }
                 if (subset == false)//K prvku z A nebyl nalezen prvek z B, tim padem se subset nezmenil
                 {
-                    printf("False\n");//vypis
+                    printf("false\n");//vypis
                     break;//neni potreba kontrolovat pro dalsi
                 }
                 if(i==set_1.size)//stane se na posledni smycce
                 {
-                    printf("True\n");//vypis
+                    printf("true\n");//vypis
                 }
             }
     }
@@ -988,18 +1040,18 @@ int main(int argc, char const *argv[])
                 }
                 if ((subset == false) || (count = set_2.size))//K prvku z A nebyl nalezen prvek z B nebo jsou vsechny prvky stejne
                 {
-                    printf("False\n");//vypis
+                    printf("false\n");//vypis
                     break;//neni potreba kontrolovat pro dalsi
                 }
                 if(i==set_1.size)//stane se na posledni smycce
                 {
-                    printf("True\n");//vypis
+                    printf("true\n");//vypis
                 }
             }
         }
         else
         {
-            printf("False\n");//vypis
+            printf("false\n");//vypis
         }
     }
 
@@ -1024,12 +1076,12 @@ int main(int argc, char const *argv[])
                 }
                 if (subset == false)//K prvku z A nebyl nalezen prvek z B
                 {
-                    printf("False\n");
+                    printf("false\n");
                     break;//konec pokud ne
                 }
             if (count==set_2.size)//stane se na posledni smycce
                 {
-                    printf("True\n");//vypis
+                    printf("true\n");//vypis
                 }
             }
 
@@ -1062,12 +1114,12 @@ int main(int argc, char const *argv[])
                     }
                     if (reflexive==false)//pokud zustal na false nenasli jsme prvek
                     {
-                        printf("False");//vypis
+                        printf("false");//vypis
                         break;//konec pokud ne
                     }
                     if (count==universum.size)//stane se na posledni smycce
                     {
-                        printf("True");//vypis
+                        printf("frue");//vypis
                         break;//konec pokud ano
                     }
                 }
@@ -1094,12 +1146,12 @@ int main(int argc, char const *argv[])
                         }
                     if(symmetric==false)//pokud zustal na false nenasli jsme prvek
                     {
-                        printf("False");//vypis
+                        printf("false");//vypis
                         break;
                     }
                     if(count==relation.size)
                     {
-                        printf("True");//vypis
+                        printf("true");//vypis
                         break;
                     }
                 }
@@ -1128,12 +1180,12 @@ int main(int argc, char const *argv[])
                     }
                     if (symmetric==false)//pokud se nastavil na false nasli jsme symetricky prvek
                     {
-                        printf("False");//vypis
+                        printf("false");//vypis
                         break;
                     }
                     if(i==relation.size-1)
                     {
-                        printf("True");//vypis
+                        printf("true");//vypis
                         break;
                     }
                 }
@@ -1163,12 +1215,12 @@ int main(int argc, char const *argv[])
                         }
                         if (transitive==false)//pokud se nenastavil na true nenasli jsme transitivni prvek
                         {
-                            printf("False");//vypis
+                            printf("false");//vypis
                             break;
                         }
                         if(i==relation.size-1)
                         {
-                            printf("True");//vypis
+                            printf("true");//vypis
                             break;
                         }
                     }
@@ -1248,13 +1300,10 @@ int main(int argc, char const *argv[])
     }
 
 
-    void injective(set_t relation, set_t set_1, set_t set_2)
+    bool injective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-        {
-            printf("Error: Relation is not a function.\n");
-            return;
-        }
+            return false;
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1268,10 +1317,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1284,10 +1330,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
 
         // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once
@@ -1305,20 +1348,17 @@ int main(int argc, char const *argv[])
             if(same != 1) // if there is different number of same items than 1, print false and return
             {
                 printf("false\n");
-                return;
+                return true;
             }
         }
 
         printf("true\n");
     }
 
-    void surjective(set_t relation, set_t set_1, set_t set_2)
+    bool surjective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-        {
-            printf("Error: Relation is not a function.\n");
-            return;
-        }
+            return false;
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1332,10 +1372,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1348,10 +1385,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
 
         // surjective means, that every item from set B has to be in relation with some item from A
@@ -1370,21 +1404,16 @@ int main(int argc, char const *argv[])
             if(same == 0) // there must be at least one "same item" in the relation, otherwise it is not surjective
             {
                 printf("false\n");
-                return;
+                return true;
             }
         }
-
         printf("true\n");
-        
     }
 
-    void bijective(set_t relation, set_t set_1, set_t set_2)
+    bool bijective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-        {
-            printf("Error: Relation is not a function.\n"); 
-            return;
-        }
+            return false;
         
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1398,10 +1427,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item a from relation is not in set 1.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1414,10 +1440,7 @@ int main(int argc, char const *argv[])
                 }
             }
             if(!is_in)
-            {
-                printf("Error: item b from relation is not in set 2.\n"); // if not, return error
-                return;
-            }
+                return false;
         }
 
         // bijective means, that the function is "perfect" - every item has its counterpart from the other set =>
