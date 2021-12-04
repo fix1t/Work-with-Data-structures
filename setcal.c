@@ -113,6 +113,7 @@ int main(int argc, char const *argv[])
         
         switch (c)
         {
+// case universum 
         case 'U':
             
             if (++U_count != 1)                     //if there is more then one universum 
@@ -175,7 +176,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-
+// case set
         case 'S':
             S_count++;
             if (!U_count || R_count || C_count)     //check the order
@@ -235,7 +236,7 @@ int main(int argc, char const *argv[])
                     not_valid(&a);
             }
             break;
-
+// case relation
         case 'R':
             R_count++;
             if (!U_count || C_count)                        //check the order
@@ -299,7 +300,7 @@ int main(int argc, char const *argv[])
             if (!a.data[a.len-1].valid)                                 //if valid = false, crash
                 not_valid(&a);
             break;
-
+// case command
         case 'C':
             C_count++;
             if (!U_count || !(S_count || R_count))                      //check the order
@@ -310,19 +311,17 @@ int main(int argc, char const *argv[])
             
             if (c != ' ')                                               //' ' must follow 
                 not_valid(&a);  
-            while (c!= EOF)                                         
-            {
-                char command[20];                                       
-                for (int i = 0; i < 30; i++)
-                    command[i]='\0';
-                fscanf(a.fp,"%s",command);                              //read command
 
-                call_function(command,&a);                              
+            char command[20];                                       
+            for (int i = 0; i < 30; i++)
+                command[i]='\0';
+            fscanf(a.fp,"%s",command);                              //read command
 
-                if ((c=fgetc(a.fp)) == '\n')
-                    break;
-            }
-            break;
+            call_function(command,&a);      
+            c=fgetc(a.fp);
+            if (c == '\n'  || c == EOF)
+                break;
+            not_valid(&a);                                    
         
 
         default:
@@ -347,23 +346,19 @@ int main(int argc, char const *argv[])
         }
     }
 }
-    
 
 
+// FUNCTIONS
 
+// MAIN FUNCTIONS = Array set up, Dynamic memory allocation
 
-
-/* FUNCTIONS */
-
-/* MAIN FUNCTIONS = Array set up, Dynamic memory allocation */
-
-    /* initiate line array */
+    // initiate line array
     void line_arr_ctor(line_arr *a)
     {
         a->len = 0;
         a->data = NULL;
     }
-    /* initiate item array */
+    // initiate item array
     void item_arr_ctor(set_t *s)
     {
         s->size=0;
@@ -372,47 +367,46 @@ int main(int argc, char const *argv[])
         s->valid=false;
         s->is_set=false;
     }
-    /* increases line array by 1, if unsuccessful send to function alloc_error */
+    // increases line array by 1, if unsuccessful send to function alloc_error
     void line_arr_inc(line_arr *a)
     {
         set_t *p = realloc(a->data, (a->len+1)*sizeof(set_t));
         if (p == NULL)
                 alloc_error(a);
         a->data = p;
-        item_arr_ctor(&a->data[a->len]);
-        a->len++;
+        item_arr_ctor(&a->data[a->len]);                    //set up item array 
+        a->len++;                                           //length ++
     }
-    /* increases item arrays (both a and b) by 1, returns NULL if unsuccessful */
+    // increases item arrays (both a and b) by 1, returns NULL if unsuccessful
     void *item_arr_inc(set_t *item_structure)
     {
-        item_structure->size++;
-        char **p = realloc(item_structure->item, (item_structure->size)*sizeof(char**));
+        item_structure->size++;                                                             //increase size
+        char **p = realloc(item_structure->item, (item_structure->size)*sizeof(char**));    //increase item array
         if (p == NULL)
                 return NULL;
-        char **k = realloc(item_structure->item_b, (item_structure->size)*sizeof(char**));
+        char **k = realloc(item_structure->item_b, (item_structure->size)*sizeof(char**));  //increase item array for item_b   
         if (k == NULL)
                 return NULL;
         item_structure->item=p;
         return item_structure->item_b=k;
     }
-    /* adds item(s) to an array */
-    /* calls item_arr_inc to reallocate memory for new item, than copies temp items to allocated memory */
+    // adds item(s) to an array
+    // calls item_arr_inc to reallocate memory for new item, than copies temp items to allocated memory
     void item_ctor(const char *tmp_a,const char *tmp_b, line_arr *a)
     {
 
-        if(item_arr_inc(&a->data[a->len-1]) == NULL)
+        if(item_arr_inc(&a->data[a->len-1]) == NULL)                    //increase item array and set it up
             alloc_error(a);
-        /* set i to be the size of item array */    
-        int i = a->data[a->len-1].size;
+            
+        int i = a->data[a->len-1].size;                                 //set i to be the size of item array(clarifies code)
 
-        char * p = malloc((strlen(tmp_a)+1)*sizeof(char));
+        char * p = malloc((strlen(tmp_a)+1)*sizeof(char));              //malloc array for item
         if (p==NULL)
             alloc_error(a);
         strcpy(p, tmp_a);
         a->data[a->len-1].item[i-1] = p;
-        
-        /* if its relation malloc array for item b, else malloc just 1 byte (eases freeing process) */
-        if (tmp_b != NULL)
+
+        if (tmp_b != NULL)                                              //if its relation malloc array for item b, NULL
         {
             char * k = malloc((strlen(tmp_b)+1)*sizeof(char));
             if (k == NULL)
@@ -424,8 +418,8 @@ int main(int argc, char const *argv[])
             a->data[a->len-1].item_b[i-1] = NULL;
     }
 
-/* FUNCTIONS TO CLEAR MEMORY */
-    /* frees items */
+//FUNCTIONS TO CLEAR MEMORY
+    //frees items
     void item_arr_dtor(set_t *data)
     {
         for (int i = 0; i < data->size; i++)
@@ -438,7 +432,7 @@ int main(int argc, char const *argv[])
                 
             }        
     }
-    /* frees item array and line array */
+    //free item array and line array
     void line_arr_dtor(line_arr *a)
     {
         for (int i = 0; i < a->len; i++)
@@ -451,20 +445,19 @@ int main(int argc, char const *argv[])
     }
 
 
-/* FUCTIONS to patch errors */
-    /* universum cannot cotnain more than one same item, item cannot be named true/false or any name of programs function */
+//FUCTIONS to patch errors
+    //universum cannot cotnain more than one same item, item cannot be named true/false or any name of programs function
     void is_valid_u(set_t *set)
     {
         for (int i = 0; i < set->size; i++)
         {
-            /* check for banned words */
-            if (banned_words(set->item[i]))
+            if (banned_words(set->item[i]))                     //check for banned words
             {
                 set->valid = false;
                 return ;
             }
-            /* item can only contain letters aA-zZ */
-            for (int j = 0; set->item[i][j]; j++)
+            
+            for (int j = 0; set->item[i][j]; j++)               //item can only contain letters aA-zZ
             {
             if (  !((set->item[i][j] >= 'A' && set->item[i][j] <= 'Z') || (set->item[i][j] >= 'a' && set->item[i][j] <= 'z'))  )
                 {
@@ -472,10 +465,8 @@ int main(int argc, char const *argv[])
                 return ;
                 } 
             }
-                
             
-            /* check for duplicates */
-            for (int k = i+1; k < set->size; k++)
+            for (int k = i+1; k < set->size; k++)               //check for duplicates
             {
                 if(!strcmp(set->item[i],set->item[k]))
                 {
@@ -487,8 +478,8 @@ int main(int argc, char const *argv[])
         set->valid = true;
     }
 
-    /* checks validity of a set */
-    /* set mus only contain items declared in universum */
+    //checks validity of a set
+    //set mus only contain items declared in universum
     void is_valid(set_t *universum,set_t *set)
     {
         int count=0;
@@ -497,13 +488,12 @@ int main(int argc, char const *argv[])
             
             for (int j = 0; j < universum->size; j++)
             {
-                    if (set->is_set)
+                    if (set->is_set)                                                //when its set, compare item to universum
                     {
                         if (!strcmp(set->item[i],universum->item[j]))
                             count++;
                     }
-                    /* when its relation, compare both item arrays */
-                    else
+                    else                                                            //when its relation, compare both item arrays
                     {
                         if (!strcmp(set->item_b[i],universum->item[j]))
                             count++;
@@ -512,13 +502,13 @@ int main(int argc, char const *argv[])
                     }
             }
         }
-    /* check if items are from universum and are not repeating */
-        if (set->is_set)
+    //check if items are from universum and are not repeating
+        if (set->is_set)                                                //if set, check if count == size(if every item found its image in universum)
         {
-            if (count == set->size && set->size <= universum->size)
+            if (count == set->size && set->size <= universum->size)     //also check if items are not repeating -> size <= universum.size
                 set->valid = true;
         }
-        else
+        else                                                            //if relation, check if count == 2*size
         {
             if (count == 2*set->size)
             {
@@ -538,8 +528,8 @@ int main(int argc, char const *argv[])
         }
     }
 
-    /* checks universum items for banned words */
-    /* returns true if item contains banned words */
+    //checks universum items for banned words
+    //returns true if item contains banned words
     bool banned_words(char *item)
     {
         if(!(strcmp(item,"true")))
@@ -591,7 +581,7 @@ int main(int argc, char const *argv[])
         return false;
     }
 
-    /* when alloc NULL is returned print error msg, close txt file and exit */
+    //when alloc NULL is returned print error msg, close txt file and exit
     void alloc_error(line_arr *a)
     {
         fprintf(stderr,"\nError. Unable to allocate memory.");
@@ -600,7 +590,7 @@ int main(int argc, char const *argv[])
         exit(-1);
     }
 
-    /* if line entered uncorrectly crash */
+    //if line entered uncorrectly crash
     void not_valid(line_arr *a)
     {
         fprintf(stderr,"Error. Unexpected input");
@@ -608,13 +598,13 @@ int main(int argc, char const *argv[])
         fclose(a->fp);
         exit(-1);
     }
-
+    //starting arguments entered uncorrectly 
     void usage()
     {
         fprintf(stderr, "Error. Program must start with txt file.");
         exit(-1);
     }
-
+    //chcek arguemnt if its a txt file
     void check_txt(const char *file)
     {
         int i;
@@ -627,14 +617,12 @@ int main(int argc, char const *argv[])
         usage();
     }
 
-/* PERFORMANCE FUNCTIONS */
-/* Command functions */
+//PERFORMANCE FUNCTIONS
+//Command functions
+//Calls function, based on function input scans the needed parameters, checks if parameters are valid and goes to correct function 
     void call_function(char *command, line_arr *a)
     {
         int line,line2,line3;
-        for (int i = 0; command[i] != '\0'; i++)
-            command[i] = tolower(command[i]);
-        
         if(!(strcmp(command,"empty")))
             {
                 fscanf(a->fp,"%d",&line);
