@@ -960,7 +960,7 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-void minus(set_t  set_1, set_t set_2) //substraction of sets
+void minus(set_t  set_1, set_t set_2) //substraction of sets in form of A-B
 {
 	printf("S");//writes 'set'
 	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
@@ -1201,7 +1201,7 @@ void transitive(relation_t relation)//answer if relation is transitive
 			transitive=false;//transitivity sets to false; at the start of every cycle
 			for(int j=0;j<relation.size;j++)//cycle for indexes of the second element
 			{
-				for(int k=0;k<relation.size;i++)//cycle for indexes of the third element
+				for(int k=0;k<relation.size;k++)//cycle for indexes of the third element
 				{
 					if(relation.item_b[i]==relation.item_a[j])//condition for second element in one relation to be same as first element in another
 						{
