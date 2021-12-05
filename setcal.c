@@ -1224,15 +1224,15 @@ bool function(relation_t relation)//return true or false depending if is functio
 {
 	for(int i=0;i<relation.size;i++)//cycle for indexes of the first relation
 	{
-		for(int j=0;j<relation.size;j++)//cycle for indexes of the second relation
+	  	for(int j=0; j<relation.size;j++)//cycle for indexes of the second relation
 		{
-				if(relation.item_a[i]==relation.item_a[j])//if first is same
+			if(i!=j)
 				{
-					if(relation.item_b[i]!=relation.item_b[j])//if second is different
-					{
+				if(relation.item_a[i]==relation.item_a[j])
+					{	
 						return false;
 					}
-				}
+				}	
 		}
 	}
 return true;
