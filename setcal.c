@@ -37,7 +37,7 @@ bool banned_words(char *item);
 
 void is_valid_u(set_t *set1);
 
-void is_valid(set_t *set,set_t *universum);
+void is_valid(set_t *set,set_t *universe);
 
 void alloc_error(line_arr *a);
 
@@ -54,7 +54,7 @@ void empty(set_t set);
 
 void card(set_t set);
 
-void complement(set_t universum, set_t set);
+void complement(set_t universe, set_t set);
 
 void s_union(set_t set_1, set_t set_2); 
 
@@ -78,7 +78,7 @@ void subset(set_t  set_1, set_t set_2);
 
 void equals (set_t  set_1, set_t set_2); 
 
-void reflexive(set_t relation, set_t universum);
+void reflexive(set_t relation, set_t universe);
 
 void symmetric(set_t relation);
 
@@ -122,10 +122,10 @@ int main(int argc, char const *argv[])
         
         switch (c)
         {
-// case universum 
+// case universe 
         case 'U':
             
-            if (++U_count != 1)                     //if there is more then one universum 
+            if (++U_count != 1)                     //if there is more then one universe 
                 not_valid(&a);
             if (S_count || C_count || R_count)      //check order
                 not_valid(&a);
@@ -451,7 +451,7 @@ int main(int argc, char const *argv[])
 
 
 //FUCTIONS to patch errors
-    //universum cannot cotnain more than one same item, item cannot be named true/false or any name of programs function
+    //universe cannot cotnain more than one same item, item cannot be named true/false or any name of programs function
     void is_valid_u(set_t *set)
     {
         for (int i = 0; i < set->size; i++)
@@ -484,33 +484,33 @@ int main(int argc, char const *argv[])
     }
 
     //checks validity of a set
-    //set mus only contain items declared in universum
-    void is_valid(set_t *universum,set_t *set)
+    //set` mus only contain items declared in universe
+    void is_valid(set_t *universe,set_t *set)
     {
         int count=0;
         for (int i = 0; i < set->size; i++)
         {
             
-            for (int j = 0; j < universum->size; j++)
+            for (int j = 0; j < universe->size; j++)
             {
-                    if (set->is_set)                                                //when its set, compare item to universum
+                    if (set->is_set)                                                //when its set, compare item to universe
                     {
-                        if (!strcmp(set->item[i],universum->item[j]))
+                        if (!strcmp(set->item[i],universe->item[j]))
                             count++;
                     }
                     else                                                            //when its relation, compare both item arrays
                     {
-                        if (!strcmp(set->item_b[i],universum->item[j]))
+                        if (!strcmp(set->item_b[i],universe->item[j]))
                             count++;
-                        if (!strcmp(set->item[i],universum->item[j]))
+                        if (!strcmp(set->item[i],universe->item[j]))
                             count++;
                     }
             }
         }
-    //check if items are from universum and are not repeating
-        if (set->is_set)                                                //if set, check if count == size(if every item found its image in universum)
+    //check if items are from universe and are not repeating
+        if (set->is_set)                                                //if set, check if count == size(if every item found its image in universe)
         {
-            if (count == set->size && set->size <= universum->size)     //also check if items are not repeating -> size <= universum.size
+            if (count == set->size && set->size <= universe->size)     //also check if items are not repeating -> size <= universe.size
                 set->valid = true;
         }
         else                                                            //if relation, check if count == 2*size
@@ -519,11 +519,11 @@ int main(int argc, char const *argv[])
             {
                 for (int i = 0; i < set->size; i++)
                 {
-                    for (int j = i+1; j < set->size; j++)
+                    for (int j = i+1; j < set->size; j++)               //check for duplicates, same relation
                     {
                         if(!strcmp(set->item[i],set->item[j]))
                         {
-                            if (!strcmp(set->item_b[i],set->item_b[j]))
+                            if (!strcmp(set->item_b[i],set->item_b[j])) //is.valid is defaultly set as false, no need to rewrite anything
                                 return;
                         }
                     }
@@ -533,7 +533,7 @@ int main(int argc, char const *argv[])
         }
     }
 
-    //checks universum items for banned words
+    //checks universe items for banned words
     //returns true if item contains banned words
     bool banned_words(char *item)
     {
@@ -887,17 +887,17 @@ int main(int argc, char const *argv[])
         printf("%d\n", set.size); // print the size of given set == the number of items in it
     }
 
-    void complement(set_t universum, set_t set)
+    void complement(set_t universe, set_t set)
     {
         printf("S");
 
         int different;
-        for(int i = 0; i < universum.size; i++) // checks each item from the universum
+        for(int i = 0; i < universe.size; i++) // checks each item from the universe
         {
             different = 1; // assumes the item is different than any in the given set
             for(int j = 0; j < set.size; j++)
             {
-                if(strcmp(universum.item[i], set.item[j]) == 0) // if it finds the item we are checking in the given set...
+                if(strcmp(universe.item[i], set.item[j]) == 0) // if it finds the item we are checking in the given set...
                 {
                     different = 0; // ...it changes the value to zero...
                     break;
@@ -905,7 +905,7 @@ int main(int argc, char const *argv[])
             }
             if(different == 1)
             {
-                printf(" %s", universum.item[i]); // ...and prints the item
+                printf(" %s", universe.item[i]); // ...and prints the item
             }
         }
 
@@ -1086,16 +1086,16 @@ int main(int argc, char const *argv[])
 
 /* FUNCTIONS ON RELATIONS */
 
-    void reflexive(set_t relation, set_t universum)//odpoved jestli je relace reflexivni
+    void reflexive(set_t relation, set_t universe)//odpoved jestli je relace reflexivni
         {
             bool reflexive;//nastaveni promene reflexivity
             int count;//nastaveni promene poctu reflexivnich prvku
-            for(int i=0;i<universum.size;i++)//cyklus pro indexy prvkù v univerzu
+            for(int i=0;i<universe.size;i++)//cyklus pro indexy prvkù v univerzu
                 {
                     reflexive=false;//nastaveni promene reflexivity na false
                     for(int j=0;j<relation.size;i++)//cyklus pro indexy prvkù v relacích
                     {
-                        if(universum.item[i]==relation.item[j])//podmínka prvku v univerzu
+                        if(universe.item[i]==relation.item[j])//podmínka prvku v univerzu
                         {
                             if(relation.item[j]==relation.item_b[j])//podmínka stejných prvkù v relaci
                                 {
@@ -1110,7 +1110,7 @@ int main(int argc, char const *argv[])
                         printf("false");//vypis
                         break;//konec pokud ne
                     }
-                    if (count==universum.size)//stane se na posledni smycce
+                    if (count==universe.size)//stane se na posledni smycce
                     {
                         printf("frue");//vypis
                         break;//konec pokud ano
