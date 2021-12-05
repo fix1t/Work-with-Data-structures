@@ -6,8 +6,8 @@
 #include <ctype.h>
 
 typedef struct {
-    int size;
-    char **item;
+    int size;           //number of items
+    char **item;        //item array
     char **item_b;
     bool valid;
     bool is_set;
@@ -16,7 +16,7 @@ typedef struct {
 typedef struct {
     FILE*fp;
     int len;
-    set_t *data;
+    set_t *data;        //data line
 } line_arr;
 
 void line_arr_ctor(line_arr *a);
@@ -37,7 +37,7 @@ bool banned_words(char *item);
 
 void is_valid_u(set_t *set1);
 
-void is_valid(set_t *set,set_t *universum);
+void is_valid(set_t *set,set_t *universe);
 
 void alloc_error(line_arr *a);
 
@@ -54,7 +54,7 @@ void empty(set_t set);
 
 void card(set_t set);
 
-void complement(set_t universum, set_t set);
+void complement(set_t universe, set_t set);
 
 void s_union(set_t set_1, set_t set_2); 
 
@@ -64,11 +64,11 @@ void domain(set_t relation);
 
 void codomain(set_t relation);
 
-bool injective(set_t relation, set_t set_1, set_t set_2);
+void injective(set_t relation, set_t set_1, set_t set_2);
 
-bool surjective(set_t relation, set_t set_1, set_t set_2);
+void surjective(set_t relation, set_t set_1, set_t set_2);
 
-bool bijective(set_t relation, set_t set_1, set_t set_2);
+void bijective(set_t relation, set_t set_1, set_t set_2);
 
 void minus(set_t  set_1, set_t set_2);
 
@@ -78,7 +78,7 @@ void subset(set_t  set_1, set_t set_2);
 
 void equals (set_t  set_1, set_t set_2); 
 
-void reflexive(set_t relation, set_t universum);
+void reflexive(set_t relation, set_t universe);
 
 void symmetric(set_t relation);
 
@@ -103,24 +103,37 @@ int main(int argc, char const *argv[])
     a.fp = fopen(argv[1] ,"r");                         //file pointer
 
     //variabales used in reading cycle
-    char c;
-    char temp_a[32];
-    char temp_b[32];
+    char c = '\0';                                       //initializing char
+    char temp_a[31];
+    char temp_b[31];
+    for (int i = 0; i < 32; i++)                        //init temp array
+    {
+        temp_a[i]='\0';
+        temp_b[i]='\0';
+    }
+        
     int U_count =0,C_count =0, S_count = 0, R_count =0;
     while (c != EOF)
     {
+        if ((U_count + C_count + S_count + R_count) > 1000 )    //if max line length is exceeded
+            not_valid(&a);
+        
         c = fgetc(a.fp);
         
         switch (c)
         {
+// case universe 
         case 'U':
             
-            if (++U_count != 1)                     //if there is more then one universum 
+            if (++U_count != 1)                     //if there is more then one universe 
                 not_valid(&a);
             if (S_count || C_count || R_count)      //check order
                 not_valid(&a);
-                                                    //continue to create line as set ...
+                
+            //continue to create line as set ...
+
             line_arr_inc(&a);
+            a.data[a.len-1].is_set=true;
             putchar(c);
             c = fgetc(a.fp);
             
@@ -134,8 +147,7 @@ int main(int argc, char const *argv[])
             if (c != ' ')                           //after capital letter must follow ' '
                     not_valid(&a);
 
-            for (int i = 0; i < 30; i++)            //temporary array set up
-                    temp_a[i]='\0';
+
 
             while (c != EOF)                        //read items
             {
@@ -146,10 +158,10 @@ int main(int argc, char const *argv[])
                 
                 for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
                 {
-                    temp_a[i] = c;
-                    c = fgetc(a.fp); 
                     if (i>29)                                           //if input is longer than 30 - > not valid input
                         not_valid(&a);
+                    temp_a[i] = c;
+                    c = fgetc(a.fp); 
                 }
 
                 if (temp_a[0] != '\0')
@@ -164,7 +176,6 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=true;
             is_valid_u(&a.data[0]);                     //check validity of universsum
                 
             if(a.data[a.len-1].size != 0)               //if not valid, crash program
@@ -175,28 +186,26 @@ int main(int argc, char const *argv[])
 
             break;
 
-
+// case set
         case 'S':
             S_count++;
             if (!U_count || R_count || C_count)     //check the order
                 not_valid(&a);
             
             line_arr_inc(&a);
+            a.data[a.len-1].is_set = true;
             putchar(c);
             c = fgetc(a.fp);
             
             if (c == '\n')                          //if its an emty set break
             {   
                 putchar(c);
-                a.data[a.len-1].is_set = true;
                 break;
             }
 
             if (c != ' ')                           //after capital letter must follow ' '
                     not_valid(&a);
 
-            for (int i = 0; i < 30; i++)            //temporary array set up
-                    temp_a[i]='\0';
 
             while (c != EOF)                        //read items
             {
@@ -207,10 +216,10 @@ int main(int argc, char const *argv[])
                 
                 for (int i = 0; c != ' ' && c != '\n' && c != EOF; i++) //save chars until a word is over
                 {
-                    temp_a[i] = c;
-                    c = fgetc(a.fp); 
                     if (i>29)                                           //if input is longer than 30 - > not valid input
                         not_valid(&a);
+                    temp_a[i] = c;
+                    c = fgetc(a.fp); 
                 }
 
                 if (temp_a[0] != '\0')
@@ -225,7 +234,6 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=true;
             
             is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity of universsum
                 
@@ -235,13 +243,14 @@ int main(int argc, char const *argv[])
                     not_valid(&a);
             }
             break;
-
+// case relation
         case 'R':
             R_count++;
             if (!U_count || C_count)                        //check the order
                 not_valid(&a);
           
             line_arr_inc(&a);                               //realloc line array & set it up                
+            a.data[a.len-1].is_set = false;
             putchar(c);
             c = fgetc(a.fp);
  
@@ -256,7 +265,7 @@ int main(int argc, char const *argv[])
 
             while (c != EOF)                                //read items
             {
-                for (int i = 0; i < 30; i++)                            //temp arrs set up
+                for (int i = 0; temp_a[i]!= '\0' && temp_b[i] !='\0'; i++)                            //temp arrs set up
                 {
                     temp_a[i]='\0';
                     temp_b[i]='\0';
@@ -266,9 +275,9 @@ int main(int argc, char const *argv[])
                 {
                     for (int i = 0; (c = fgetc(a.fp)) != ' '; i++)      //get character & save char, until word ends
                     {
-                        temp_a[i]=c;
                         if (i>29)                                       //max length exceeded, crash 
                             not_valid(&a);
+                        temp_a[i]=c;
                     }
 
                     for (int i = 0; (c = fgetc(a.fp)) != ')'; i++)      //until ')' read another word
@@ -278,9 +287,9 @@ int main(int argc, char const *argv[])
                             i--;
                             continue;
                         }
-                        temp_b[i]=c;
                         if (i>29)
                             not_valid(&a);
+                        temp_b[i]=c;
                     }
 
                     item_ctor(temp_a,temp_b,&a);                        //construct item in item array
@@ -294,12 +303,11 @@ int main(int argc, char const *argv[])
                     break;
                 }
             }
-            a.data[a.len-1].is_set=false;                               
             is_valid(&a.data[0], &a.data[a.len-1]);                     //check validity
             if (!a.data[a.len-1].valid)                                 //if valid = false, crash
                 not_valid(&a);
             break;
-
+// case command
         case 'C':
             C_count++;
             if (!U_count || !(S_count || R_count))                      //check the order
@@ -310,19 +318,17 @@ int main(int argc, char const *argv[])
             
             if (c != ' ')                                               //' ' must follow 
                 not_valid(&a);  
-            while (c!= EOF)                                         
-            {
-                char command[20];                                       
-                for (int i = 0; i < 30; i++)
-                    command[i]='\0';
-                fscanf(a.fp,"%s",command);                              //read command
 
-                call_function(command,&a);                              
-
-                if ((c=fgetc(a.fp)) == '\n')
-                    break;
-            }
-            break;
+            char command[20];                                       
+            for (int i = 0; i < 30; i++)
+                command[i]='\0';
+            fscanf(a.fp,"%s",command);                              //read command
+            call_function(command,&a);                              //after functio '\n' or EOF follows, else wrong input                     
+            c=fgetc(a.fp);
+            if (c == '\n'  || c == EOF)
+                break;
+            not_valid(&a);           
+            break;                         
         
 
         default:
@@ -347,23 +353,19 @@ int main(int argc, char const *argv[])
         }
     }
 }
-    
 
 
+// FUNCTIONS
 
+// MAIN FUNCTIONS = Array set up, Dynamic memory allocation
 
-
-/* FUNCTIONS */
-
-/* MAIN FUNCTIONS = Array set up, Dynamic memory allocation */
-
-    /* initiate line array */
+    // initiate line array
     void line_arr_ctor(line_arr *a)
     {
         a->len = 0;
         a->data = NULL;
     }
-    /* initiate item array */
+    // initiate item array
     void item_arr_ctor(set_t *s)
     {
         s->size=0;
@@ -372,47 +374,49 @@ int main(int argc, char const *argv[])
         s->valid=false;
         s->is_set=false;
     }
-    /* increases line array by 1, if unsuccessful send to function alloc_error */
+    // increases line array by 1, if unsuccessful send to function alloc_error
     void line_arr_inc(line_arr *a)
     {
         set_t *p = realloc(a->data, (a->len+1)*sizeof(set_t));
         if (p == NULL)
                 alloc_error(a);
         a->data = p;
-        item_arr_ctor(&a->data[a->len]);
-        a->len++;
+        item_arr_ctor(&a->data[a->len]);                    //set up item array 
+        a->len++;                                           //length ++
     }
-    /* increases item arrays (both a and b) by 1, returns NULL if unsuccessful */
-    void *item_arr_inc(set_t *item_structure)
+    // increases item arrays (both a and b) by 1, returns NULL if unsuccessful
+    void *item_arr_inc(set_t *item_array)
     {
-        item_structure->size++;
-        char **p = realloc(item_structure->item, (item_structure->size)*sizeof(char**));
+        item_array->size++;                                                             //increase size
+        char **p = realloc(item_array->item, (item_array->size)*sizeof(char**));    //increase item array
         if (p == NULL)
                 return NULL;
-        char **k = realloc(item_structure->item_b, (item_structure->size)*sizeof(char**));
-        if (k == NULL)
+        if (!item_array->is_set)
+        {
+            char **k = realloc(item_array->item_b, (item_array->size)*sizeof(char**));  //increase item array for item_b   
+            if (k == NULL)
                 return NULL;
-        item_structure->item=p;
-        return item_structure->item_b=k;
+            item_array->item_b=k;
+        }
+        return item_array->item=p;
     }
-    /* adds item(s) to an array */
-    /* calls item_arr_inc to reallocate memory for new item, than copies temp items to allocated memory */
+    // adds item(s) to an array
+    // calls item_arr_inc to reallocate memory for new item, than copies temp items to allocated memory
     void item_ctor(const char *tmp_a,const char *tmp_b, line_arr *a)
     {
-
-        if(item_arr_inc(&a->data[a->len-1]) == NULL)
+        if(item_arr_inc(&a->data[a->len-1]) == NULL)                    //increase item array and set it up
             alloc_error(a);
-        /* set i to be the size of item array */    
-        int i = a->data[a->len-1].size;
+            
+        int i = a->data[a->len-1].size;                                 //set i to be the size of item array(clarifies code)
 
-        char * p = malloc((strlen(tmp_a)+1)*sizeof(char));
+        char * p = malloc((strlen(tmp_a)+1)*sizeof(char));              //malloc array for item
         if (p==NULL)
             alloc_error(a);
+
         strcpy(p, tmp_a);
         a->data[a->len-1].item[i-1] = p;
-        
-        /* if its relation malloc array for item b, else malloc just 1 byte (eases freeing process) */
-        if (tmp_b != NULL)
+
+        if (tmp_b != NULL)                                              //if its relation malloc array for item b, NULL
         {
             char * k = malloc((strlen(tmp_b)+1)*sizeof(char));
             if (k == NULL)
@@ -420,12 +424,10 @@ int main(int argc, char const *argv[])
             strcpy(k, tmp_b);
             a->data[a->len-1].item_b[i-1] = k;
         }
-        else
-            a->data[a->len-1].item_b[i-1] = NULL;
     }
 
-/* FUNCTIONS TO CLEAR MEMORY */
-    /* frees items */
+//FUNCTIONS TO CLEAR MEMORY
+    //frees items
     void item_arr_dtor(set_t *data)
     {
         for (int i = 0; i < data->size; i++)
@@ -433,12 +435,9 @@ int main(int argc, char const *argv[])
                 free(data->item[i]);
                 if (!data->is_set)
                     free(data->item_b[i]);
-                
-                
-                
             }        
     }
-    /* frees item array and line array */
+    //free item array and line array
     void line_arr_dtor(line_arr *a)
     {
         for (int i = 0; i < a->len; i++)
@@ -451,20 +450,19 @@ int main(int argc, char const *argv[])
     }
 
 
-/* FUCTIONS to patch errors */
-    /* universum cannot cotnain more than one same item, item cannot be named true/false or any name of programs function */
+//FUCTIONS to patch errors
+    //universe cannot cotnain more than one same item, item cannot be named true/false or any name of programs function
     void is_valid_u(set_t *set)
     {
         for (int i = 0; i < set->size; i++)
         {
-            /* check for banned words */
-            if (banned_words(set->item[i]))
+            if (banned_words(set->item[i]))                     //check for banned words
             {
                 set->valid = false;
                 return ;
             }
-            /* item can only contain letters aA-zZ */
-            for (int j = 0; set->item[i][j]; j++)
+            
+            for (int j = 0; set->item[i][j]; j++)               //item can only contain letters aA-zZ
             {
             if (  !((set->item[i][j] >= 'A' && set->item[i][j] <= 'Z') || (set->item[i][j] >= 'a' && set->item[i][j] <= 'z'))  )
                 {
@@ -472,10 +470,8 @@ int main(int argc, char const *argv[])
                 return ;
                 } 
             }
-                
             
-            /* check for duplicates */
-            for (int k = i+1; k < set->size; k++)
+            for (int k = i+1; k < set->size; k++)               //check for duplicates
             {
                 if(!strcmp(set->item[i],set->item[k]))
                 {
@@ -487,48 +483,47 @@ int main(int argc, char const *argv[])
         set->valid = true;
     }
 
-    /* checks validity of a set */
-    /* set mus only contain items declared in universum */
-    void is_valid(set_t *universum,set_t *set)
+    //checks validity of a set
+    //set` mus only contain items declared in universe
+    void is_valid(set_t *universe,set_t *set)
     {
         int count=0;
         for (int i = 0; i < set->size; i++)
         {
             
-            for (int j = 0; j < universum->size; j++)
+            for (int j = 0; j < universe->size; j++)
             {
-                    if (set->is_set)
+                    if (set->is_set)                                                //when its set, compare item to universe
                     {
-                        if (!strcmp(set->item[i],universum->item[j]))
+                        if (!strcmp(set->item[i],universe->item[j]))
                             count++;
                     }
-                    /* when its relation, compare both item arrays */
-                    else
+                    else                                                            //when its relation, compare both item arrays
                     {
-                        if (!strcmp(set->item_b[i],universum->item[j]))
+                        if (!strcmp(set->item_b[i],universe->item[j]))
                             count++;
-                        if (!strcmp(set->item[i],universum->item[j]))
+                        if (!strcmp(set->item[i],universe->item[j]))
                             count++;
                     }
             }
         }
-    /* check if items are from universum and are not repeating */
-        if (set->is_set)
+    //check if items are from universe and are not repeating
+        if (set->is_set)                                                //if set, check if count == size(if every item found its image in universe)
         {
-            if (count == set->size && set->size <= universum->size)
+            if (count == set->size && set->size <= universe->size)     //also check if items are not repeating -> size <= universe.size
                 set->valid = true;
         }
-        else
+        else                                                            //if relation, check if count == 2*size
         {
             if (count == 2*set->size)
             {
                 for (int i = 0; i < set->size; i++)
                 {
-                    for (int j = i+1; j < set->size; j++)
+                    for (int j = i+1; j < set->size; j++)               //check for duplicates, same relation
                     {
                         if(!strcmp(set->item[i],set->item[j]))
                         {
-                            if (!strcmp(set->item_b[i],set->item_b[j]))
+                            if (!strcmp(set->item_b[i],set->item_b[j])) //is.valid is defaultly set as false, no need to rewrite anything
                                 return;
                         }
                     }
@@ -538,8 +533,8 @@ int main(int argc, char const *argv[])
         }
     }
 
-    /* checks universum items for banned words */
-    /* returns true if item contains banned words */
+    //checks universe items for banned words
+    //returns true if item contains banned words
     bool banned_words(char *item)
     {
         if(!(strcmp(item,"true")))
@@ -591,7 +586,7 @@ int main(int argc, char const *argv[])
         return false;
     }
 
-    /* when alloc NULL is returned print error msg, close txt file and exit */
+    //when alloc NULL is returned print error msg, close txt file and exit
     void alloc_error(line_arr *a)
     {
         fprintf(stderr,"\nError. Unable to allocate memory.");
@@ -600,7 +595,7 @@ int main(int argc, char const *argv[])
         exit(-1);
     }
 
-    /* if line entered uncorrectly crash */
+    //if line entered uncorrectly crash
     void not_valid(line_arr *a)
     {
         fprintf(stderr,"Error. Unexpected input");
@@ -608,13 +603,13 @@ int main(int argc, char const *argv[])
         fclose(a->fp);
         exit(-1);
     }
-
+    //starting arguments entered uncorrectly 
     void usage()
     {
         fprintf(stderr, "Error. Program must start with txt file.");
         exit(-1);
     }
-
+    //chcek arguemnt if its a txt file
     void check_txt(const char *file)
     {
         int i;
@@ -627,14 +622,12 @@ int main(int argc, char const *argv[])
         usage();
     }
 
-/* PERFORMANCE FUNCTIONS */
-/* Command functions */
+//PERFORMANCE FUNCTIONS
+//Command functions
+//Calls function, based on function input scans the needed parameters, checks if parameters are valid and goes to correct function 
     void call_function(char *command, line_arr *a)
     {
-        int line,line2,line3;
-        for (int i = 0; command[i] != '\0'; i++)
-            command[i] = tolower(command[i]);
-        
+        int line=0,line2=0,line3=0;
         if(!(strcmp(command,"empty")))
             {
                 fscanf(a->fp,"%d",&line);
@@ -840,8 +833,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
 
-                if(! injective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a);
+                injective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         if(!(strcmp(command,"surjective")))
@@ -855,8 +848,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
 
-                if(! surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a);
+                surjective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         if(!(strcmp(command,"bijective")))
@@ -870,8 +863,8 @@ int main(int argc, char const *argv[])
                 if (a->data[line-1].is_set || !a->data[line2-1].is_set || !a->data[line3-1].is_set)
                     not_valid(a);
                     
-                if(! bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]))
-                    not_valid(a); 
+                bijective(a->data[line-1],a->data[line2-1],a->data[line3-1]);
+
                 return;            
             } 
         not_valid(a);
@@ -894,17 +887,17 @@ int main(int argc, char const *argv[])
         printf("%d\n", set.size); // print the size of given set == the number of items in it
     }
 
-    void complement(set_t universum, set_t set)
+    void complement(set_t universe, set_t set)
     {
         printf("S");
 
         int different;
-        for(int i = 0; i < universum.size; i++) // checks each item from the universum
+        for(int i = 0; i < universe.size; i++) // checks each item from the universe
         {
             different = 1; // assumes the item is different than any in the given set
             for(int j = 0; j < set.size; j++)
             {
-                if(strcmp(universum.item[i], set.item[j]) == 0) // if it finds the item we are checking in the given set...
+                if(strcmp(universe.item[i], set.item[j]) == 0) // if it finds the item we are checking in the given set...
                 {
                     different = 0; // ...it changes the value to zero...
                     break;
@@ -912,7 +905,7 @@ int main(int argc, char const *argv[])
             }
             if(different == 1)
             {
-                printf(" %s", universum.item[i]); // ...and prints the item
+                printf(" %s", universe.item[i]); // ...and prints the item
             }
         }
 
@@ -1134,6 +1127,7 @@ void reflexive(relation_t relation, set_t universe)//answer if relation is refle
 		}
 }
 
+
 void symmetric(relation_t relation)//answer if relation is symmetric
 {
 	bool symmetric;//decleration of variable for symmetricity
@@ -1235,6 +1229,7 @@ void transitive(relation_t relation)//answer if relation is transitive
 	}
 }
 
+
 bool function(relation_t relation)//return true or false depending if is function
 {
 	for(int i=0;i<relation.size;i++)//cycle for indexes of the first relation
@@ -1304,10 +1299,13 @@ return true;
     }
 
 
-    bool injective(set_t relation, set_t set_1, set_t set_2)
+    void injective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n");
+            return;
+        }
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1321,7 +1319,10 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1334,10 +1335,18 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
-        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once
+        // injective means, that every "a" has different "b" => every "b" (second item from relation) must be there only once and every "first item" must be used
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1352,17 +1361,20 @@ return true;
             if(same != 1) // if there is different number of same items than 1, print false and return
             {
                 printf("false\n");
-                return true;
+                return;
             }
         }
 
         printf("true\n");
     }
 
-    bool surjective(set_t relation, set_t set_1, set_t set_2)
+    void surjective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n");
+            return;
+        }
 
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1376,7 +1388,10 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1389,7 +1404,10 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
         // surjective means, that every item from set B has to be in relation with some item from A
@@ -1408,16 +1426,21 @@ return true;
             if(same == 0) // there must be at least one "same item" in the relation, otherwise it is not surjective
             {
                 printf("false\n");
-                return true;
+                return;
             }
         }
+
         printf("true\n");
+        
     }
 
-    bool bijective(set_t relation, set_t set_1, set_t set_2)
+    void bijective(set_t relation, set_t set_1, set_t set_2)
     {
         if(function(relation) == false) // checks if the relation is function
-            return false;
+        {
+            printf("false\n"); 
+            return;
+        }
         
         bool is_in;
         for(int i = 0; i < relation.size; i++)
@@ -1431,7 +1454,10 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
         for(int k = 0; k < relation.size; k++)
         {
@@ -1444,13 +1470,21 @@ return true;
                 }
             }
             if(!is_in)
-                return false;
+            {
+                printf("false\n"); // if not, return false
+                return;
+            }
         }
 
         // bijective means, that the function is "perfect" - every item has its counterpart from the other set =>
         // => the function must be injective AND surjective
-
-        bool injective = true; // assumes its injective and proceeds to check (same way as in the injective function)
+        
+        // checks if it is injective:
+        if(set_1.size != relation.size) // checks that every item from A is present
+        {
+            printf("false\n");
+            return;
+        }
         int same_i;
         for(int m = 0; m < relation.size; m++)
         {
@@ -1464,11 +1498,12 @@ return true;
             }
             if(same_i != 1)
             {
-                injective = false; // the condition is broken == it is not injective
+                printf("false\n"); // the condition is broken => it is not injective => return false
+                return; 
             }
         }
 
-        bool surjective = true; // assumes it is surjective and checks...
+        // checks if it is surjective:
         int same_s;
         for(int m = 0; m < set_2.size; m++)
         {
@@ -1482,15 +1517,10 @@ return true;
             }
             if(same_s == 0)
             {
-                surjective = false; // the condition is broken == it is not surjective
+                printf("false\n"); // the condition is broken => it is not surjective => return false
+                return;
             }
         }
 
-        if(injective && surjective) // checks and prints the result
-        {
-            printf("true\n");
-        } else {
-            printf("false\n");
-        }
-
+        printf("true\n"); // all conditions passed, it is bijective, print true
     }
