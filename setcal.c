@@ -967,7 +967,6 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-//functions for sets and universums
 void minus(set_t  set_1, set_t set_2) //substraction of sets
 {
 	printf("S");//writes 'set'
@@ -1081,6 +1080,10 @@ if(set_1.size==set_2.size)//condition for both sets to be same size
 		}
 
 	}
+	else
+		{
+			printf("true\n");//print
+		}	
 }
 
 
@@ -1094,7 +1097,7 @@ void reflexive(relation_t relation, set_t universe)//answer if relation is refle
 	for(int i=0;i<universe.size;i++)//cycle for indexes of the universe
 		{
 			reflexive=false;//set up of variable for reflexivity to false; at the start of each cycle
-			for(int j=0;j<relation.size;i++)//cycle for indexes of relation
+			for(int j=0;j<relation.size;j++)//cycle for indexes of relation
 			{
 				if(universe.item[i]==relation.item_a[j])//element has to be in universe
 				{
