@@ -995,11 +995,12 @@ void minus(set_t  set_1, set_t set_2) //substraction of sets
 void subseteq(set_t  set_1, set_t set_2) //answer if A is subset or equivalent to B
 {
 	bool subset;//decleration of variable if element could be in subset
-
+if(set_1.size!=0)
+     {
 	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
 		{
 			subset = false;//decleration of variable for being subset; at the start of cycle
-			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			for(int j=0;j<set_2.size;j++)//cycle for indexes of the second set
 			{
 				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
 				{
@@ -1012,22 +1013,28 @@ void subseteq(set_t  set_1, set_t set_2) //answer if A is subset or equivalent t
 				printf("false\n");//print of answer
 				break;//
 			}
-			if(i==set_1.size)//happens on last repetition
+			if(i==set_1.size-1)//happens on last repetition
 			{
 				printf("true\n");//print of answer
 			}
 		}
+       }
+else
+      {
+	printf("true\n");//print of answer
+      }
 }
 
 void subset(set_t  set_1, set_t set_2) //answer if A is subset of B but not equal
 {
 	int count;//decleration of variable for number of same elements
 	bool subset;//decleration of variable if element could be in subset
-
+if(set_1.size!=0)
+     {
 	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
 		{
 			subset = false;//decleration of variable for being subset; at the start of cycle
-			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			for(int j=0;j<set_2.size;j++)//cycle for indexes of the second set
 			{
 				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
 				{
@@ -1036,16 +1043,21 @@ void subset(set_t  set_1, set_t set_2) //answer if A is subset of B but not equa
 					break;//already found
 				}
 			}
-			if ((subset == false) || (count = set_2.size))//For element from A was not found counterpart in B or they are equal
+			if ((subset == false) || (count == set_2.size))//For element from A was not found counterpart in B or they are equal
 			{
 				printf("false\n");//print
 				break;//not found already cant be subset
 			}
-			if(i==set_1.size)//happens on last repetition if was not broken
+			if(i==set_1.size-1)//happens on last repetition if was not broken
 			{
 				printf("true\n");//print
 			}
 		}
+      }
+else
+      {
+	printf("true\n");//print of answer
+      }
 }
 
 void equals (set_t  set_1, set_t set_2) //answer if A is equal to B
@@ -1059,7 +1071,7 @@ if(set_1.size==set_2.size)//condition for both sets to be same size
 	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
 		{
 			subset = false;//decleration of variable for being subset; at the start of cycle
-			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			for(int j=0;j<set_2.size;j++)//cycle for indexes of the second set
 			{
 				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
 				{
@@ -1082,7 +1094,7 @@ if(set_1.size==set_2.size)//condition for both sets to be same size
 	}
 	else
 		{
-			printf("true\n");//print
+			printf("false\n");//print
 		}	
 }
 
@@ -1129,7 +1141,7 @@ void symmetric(relation_t relation)//answer if relation is symmetric
 	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
 		{
 			symmetric=false;//symetricity sets to false; at the start of every cycle
-			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+			for(int j=0;j<relation.size;j++)//cycle for indexes of the second element
 				{
 				if(relation.item_a[i]==relation.item_b[j])//condition for element b in different relation to be same as a
 					{
@@ -1159,7 +1171,7 @@ void antisymmetric(relation_t relation) //answer if relation is antisymmetric
 	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
 		{
 			symmetric=false;//symetricity sets to false; at the start of every cycle
-			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+			for(int j=0;j<relation.size;j++)//cycle for indexes of the second element
 		{
 			{
 				if(relation.item_a[i]!=relation.item_b[i])//condition for a to be different from b
@@ -1193,7 +1205,7 @@ void transitive(relation_t relation)//answer if relation is transitive
 	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
 		{
 			transitive=false;//transitivity sets to false; at the start of every cycle
-			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+			for(int j=0;j<relation.size;j++)//cycle for indexes of the second element
 			{
 				for(int k=0;k<relation.size;i++)//cycle for indexes of the third element
 				{
