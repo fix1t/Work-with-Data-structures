@@ -967,287 +967,276 @@ int main(int argc, char const *argv[])
         printf("\n");
     }
 
-    void minus(set_t  set_1, set_t set_2) //rozdil mnozin
-    {
-        printf("S");//vypis 'set'
-        for(int i=0;i<set_1.size;i++)//cyklus pro indexy prvniho retezce
-            {
-                bool is_in_both = false;//nastaveni promene existence v obou mnozinach; na zacatku cyklu
+//functions for sets and universums
+void minus(set_t  set_1, set_t set_2) //substraction of sets
+{
+	printf("S");//writes 'set'
+	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
+		{
+			bool is_in_both = false;//decleration of variable for existence in both sets; at the start of cycle
 
-                for(int j=0;j<set_2.size;j++)//cyklus pro indexy druheho retezce
-                    {
-                        if(strcmp(set_1.item[i], set_2.item[j]) == 0)//podminka porovnani dvou prvku; projde pokud jsou stejne
-                        {
-                            is_in_both = true;//nastaveni promene existence v obou mnozinach na true
-                            break;//prvek nalezen netreba prochazet zbytek cyklu
-                        }
-                    }
+			for(int j=0;j<set_2.size;j++)//cycle for indexes of the second set
+				{
+					if(strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
+					{
+						is_in_both = true;//it is true that element is in both sets
+						break;//element found, not needed to search further
+					}
+				}
 
-                if(is_in_both != true)//podminka existence v obou mnozinach;projde pokud nebyl nalezen stejny prvek
-                {
-                    printf(" %s", set_1.item[i]);//vypise prvek
-                }
+			if(is_in_both != true)//condition for element to not be in both sets
+			{
+				printf(" %s", set_1.item[i]);//prints element
+			}
 
-            }
-        printf("\n");//konec radku
-    }
+		}
+	printf("\n");//end of the line
+}
 
-    void subseteq(set_t  set_1, set_t set_2) //odpoved jestli je A podmnozinou B
-    {
-        bool subset;//nastaveni promene jestli je podmnozinou
+void subseteq(set_t  set_1, set_t set_2) //answer if A is subset or equivalent to B
+{
+	bool subset;//decleration of variable if element could be in subset
 
-        for(int i=0;i<set_1.size;i++)//cyklus pro indexy prvniho retezce
-            {
-                subset = false;//nastaveni promene jestli je podmnozinou na false; na zacatku kazdeho retezce, tedy pro kazdy prvek z A
-                for(int j=0;j<set_2.size;i++)//cyklus pro indexy druheho retezce
-                {
-                    if (strcmp(set_1.item[i], set_2.item[j]) == 0)//podminka porovnani dvou prvku; projde pokud jsou stejne
-                    {
-                        subset = true;//nastaveni promene jestli je podmnozinou na true; "pro tento prvek je true"
-                        break;//netreba
-                    }
-                }
-                if (subset == false)//K prvku z A nebyl nalezen prvek z B, tim padem se subset nezmenil
-                {
-                    printf("false\n");//vypis
-                    break;//neni potreba kontrolovat pro dalsi
-                }
-                if(i==set_1.size)//stane se na posledni smycce
-                {
-                    printf("true\n");//vypis
-                }
-            }
-    }
+	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
+		{
+			subset = false;//decleration of variable for being subset; at the start of cycle
+			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			{
+				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
+				{
+					subset = true;//it is true that element is in both sets
+					break;//not needed to search further
+				}
+			}
+			if (subset == false)//For element from A was not found counterpart in B
+			{
+				printf("false\n");//print of answer
+				break;//
+			}
+			if(i==set_1.size)//happens on last repetition
+			{
+				printf("true\n");//print of answer
+			}
+		}
+}
 
-    void subset(set_t  set_1, set_t set_2) //odpoved jestli je A vlastni podmnozina B
-    {
-        int count;//pocet stejnych prvku
-        bool subset;//nastaveni promene jestli je podmnozinou
+void subset(set_t  set_1, set_t set_2) //answer if A is subset of B but not equal
+{
+	int count;//decleration of variable for number of same elements
+	bool subset;//decleration of variable if element could be in subset
 
-    if(set_1.size==set_2.size)//podminka jestli jsou mnoziny stejne velke
-        {
-        for(int i=0;i<set_1.size;i++)//cyklus pro indexy prvniho retezce
-            {
-                subset = false;//nastaveni promene jestli je podmnozinou na false; na zacatku kazdeho retezce, tedy pro kazdy prvek z A
-                for(int j=0;j<set_2.size;i++)//cyklus pro indexy druheho retezce
-                {
-                    if (strcmp(set_1.item[i], set_2.item[j]) == 0)//podminka porovnani dvou prvku; projde pokud jsou stejne
-                    {
-                        subset = true;//nastaveni promene jestli je podmnozinou na true; "pro tento prvek je true"
-                        count++;//nalezen stejny prvek -> pocet se zvysi
-                        break;
-                    }
-                }
-                if ((subset == false) || (count = set_2.size))//K prvku z A nebyl nalezen prvek z B nebo jsou vsechny prvky stejne
-                {
-                    printf("false\n");//vypis
-                    break;//neni potreba kontrolovat pro dalsi
-                }
-                if(i==set_1.size)//stane se na posledni smycce
-                {
-                    printf("true\n");//vypis
-                }
-            }
-        }
-        else
-        {
-            printf("false\n");//vypis
-        }
-    }
+	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
+		{
+			subset = false;//decleration of variable for being subset; at the start of cycle
+			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			{
+				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
+				{
+					subset = true;//it is true that element is in both sets
+					count++;//found another
+					break;//already found
+				}
+			}
+			if ((subset == false) || (count = set_2.size))//For element from A was not found counterpart in B or they are equal
+			{
+				printf("false\n");//print
+				break;//not found already cant be subset
+			}
+			if(i==set_1.size)//happens on last repetition if was not broken
+			{
+				printf("true\n");//print
+			}
+		}
+}
 
-    void equals (set_t  set_1, set_t set_2) //odpoved jestli jsou si mnoziny rovny
-    {
-        int count;//pocet stejnych prvku
-        bool subset;//nastaveni promene jestli je podmnozinou
+void equals (set_t  set_1, set_t set_2) //answer if A is equal to B
+{
+	int count;//decleration of variable for number of same elements
+	bool subset;//decleration of variable if element could be in subset
 
-    if(set_1.size==set_2.size)//podminka jestli jsou mnoziny stejne velke
-        {
-        for(int i=0;i<set_1.size;i++)//cyklus pro indexy prvniho retezce
-            {
-                subset = false;//nastaveni promene jestli je podmnozinou na false; na zacatku kazdeho retezce, tedy pro kazdy prvek z A
-                for(int j=0;j<set_2.size;i++)//cyklus pro indexy druheho retezce
-                {
-                    if (strcmp(set_1.item[i], set_2.item[j]) == 0)//podminka porovnani dvou prvku; projde pokud jsou stejne
-                    {
-                        subset = true;//nastaveni promene jestli je podmnozinou na true; "pro tento prvek je true"
-                        count++;//nalezen stejny prvek -> pocet se zvysi
-                        break;
-                    }
-                }
-                if (subset == false)//K prvku z A nebyl nalezen prvek z B
-                {
-                    printf("false\n");
-                    break;//konec pokud ne
-                }
-            if (count==set_2.size)//stane se na posledni smycce
-                {
-                    printf("true\n");//vypis
-                }
-            }
 
-        }
-    }
+if(set_1.size==set_2.size)//condition for both sets to be same size
+	{
+	for(int i=0;i<set_1.size;i++)//cycle for indexes of the first set
+		{
+			subset = false;//decleration of variable for being subset; at the start of cycle
+			for(int j=0;j<set_2.size;i++)//cycle for indexes of the second set
+			{
+				if (strcmp(set_1.item[i], set_2.item[j]) == 0)//condition for both elements to be same
+				{
+					subset = true;//it is true that element is in both sets
+					count++;//found another
+					break;//already found
+				}
+			}
+			if (subset == false)//For element from A was not found counterpart in B
+			{
+				printf("false\n");//print
+				break;//not found already cant be subset
+			}
+		if (count==set_2.size)//happens on last repetition if was not broken
+			{
+				printf("true\n");//print
+			}
+		}
+
+	}
+}
 
 
 
 
 /* FUNCTIONS ON RELATIONS */
+void reflexive(relation_t relation, set_t universe)//answer if relation is reflexive
+{
+	bool reflexive;//decleration of variable for reflexivity
+	int count;//decleration of variable counting elements that could be in reflexive relation
+	for(int i=0;i<universe.size;i++)//cycle for indexes of the universe
+		{
+			reflexive=false;//set up of variable for reflexivity to false; at the start of each cycle
+			for(int j=0;j<relation.size;i++)//cycle for indexes of relation
+			{
+				if(universe.item[i]==relation.item_a[j])//element has to be in universe
+				{
+					if(relation.item_a[j]==relation.item_b[j])//condition for both elements in relation to be same
+						{
+							reflexive=true;//it is true that element is in both sets
+							count++;//found another
+							break;//already found
+						}
+				}
+			}
+			if (reflexive==false)//For that element we havent found
+			{
+				printf("false\n");//print
+				break;
+			}
+			if (count==universe.size)//happens on last repetition if was not broken
+			{
+				printf("true\n");//print
+				break;
+			}
+		}
+}
 
-    void reflexive(set_t relation, set_t universum)//odpoved jestli je relace reflexivni
-        {
-            bool reflexive;//nastaveni promene reflexivity
-            int count;//nastaveni promene poctu reflexivnich prvku
-            for(int i=0;i<universum.size;i++)//cyklus pro indexy prvkù v univerzu
-                {
-                    reflexive=false;//nastaveni promene reflexivity na false
-                    for(int j=0;j<relation.size;i++)//cyklus pro indexy prvkù v relacích
-                    {
-                        if(universum.item[i]==relation.item[j])//podmínka prvku v univerzu
-                        {
-                            if(relation.item[j]==relation.item_b[j])//podmínka stejných prvkù v relaci
-                                {
-                                    reflexive=true;//nastaveni reflexivity prvku na true
-                                    count++;//nasel se dalsi reflexini prvke; zvysi se pocitatel
-                                    break;
-                                }
-                        }
-                    }
-                    if (reflexive==false)//pokud zustal na false nenasli jsme prvek
-                    {
-                        printf("false");//vypis
-                        break;//konec pokud ne
-                    }
-                    if (count==universum.size)//stane se na posledni smycce
-                    {
-                        printf("frue");//vypis
-                        break;//konec pokud ano
-                    }
-                }
-        }
+void symmetric(relation_t relation)//answer if relation is symmetric
+{
+	bool symmetric;//decleration of variable for symmetricity
+	int count;//decleration of variable counting elements that could be in symmetric relation
+	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
+		{
+			symmetric=false;//symetricity sets to false; at the start of every cycle
+			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+				{
+				if(relation.item_a[i]==relation.item_b[j])//condition for element b in different relation to be same as a
+					{
+					if(relation.item_a[j]==relation.item_b[i])//condition for element a in different relation to be same as b
+						{
+							symmetric=true;//symmetricity sets to true
+							count++;//found another
+							break;
+						}
+					}
+				}
+			if(symmetric==false)//not found
+			{
+				printf("false\n");//print
+				break;
+			}
+			if(count==relation.size)
+			{
+				printf("true\n");//print
+				break;
+			}
+		}
+}
+void antisymmetric(relation_t relation) //answer if relation is antisymmetric
+{
+	bool symmetric;//decleration of variable for symmetricity
+	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
+		{
+			symmetric=false;//symetricity sets to false; at the start of every cycle
+			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+		{
+			{
+				if(relation.item_a[i]!=relation.item_b[i])//condition for a to be different from b
+				{
+					if(relation.item_a[i]==relation.item_b[j])//condition for element b in different relation to be same as a
+						{
+							if(relation.item_a[j]==relation.item_b[i])//condition for element a in different relation to be same as b
+								{
+									symmetric=true;//symmetricity sets to false
+									break;
+								}
+						}
+				}
+			}
+			if (symmetric==true)//if true we found symmetric element
+			{
+				printf("false\n");//print
+				break;
+			}
+			if(i==relation.size-1)//happens on last repetition if was not broken
+			{
+				printf("true\n");//print
+				break;
+			}
+		}
+	}
+}
+void transitive(relation_t relation)//answer if relation is transitive
+{
+	bool transitive;//decleration of variable for transitivity
+	for(int i=0;i<relation.size;i++)//cycle for indexes of the first element
+		{
+			transitive=false;//transitivity sets to false; at the start of every cycle
+			for(int j=0;j<relation.size;i++)//cycle for indexes of the second element
+			{
+				for(int k=0;k<relation.size;i++)//cycle for indexes of the third element
+				{
+					if(relation.item_b[i]==relation.item_a[j])//condition for second element in one relation to be same as first element in another
+						{
+							if(relation.item_a[i]==relation.item_a[k])//condition for first elements of 2 relations to be same
+								{
+									if(relation.item_b[k]==relation.item_b[j])//condition for second elements of 2 relations to be same
+									{
+										transitive=true;//transitivity sets to true
+										break;
+									}
+								}
+						}
+				}
+				if (transitive==false)//not found
+				{
+					printf("false\n");//print
+					break;
+				}
+				if(i==relation.size-1)//happens on last repetition
+				{
+					printf("true\n");//print
+					break;
+				}
+			}
+	}
+}
 
-    void symmetric(set_t relation)//odpoved jestli je relace symetricka
-        {
-            bool symmetric;//nastaveni promene symetricnosti
-            int count;//nastani promene pocitatele
-            for(int i=0;i<relation.size;i++)//cyklus pro indexy prvniho prvku relace
-                {
-                    symmetric=false;//symetricnost se nastavi na false na zacatku kazdeho cyklu
-                    for(int j=0;j<relation.size;i++)//cyklus pro indexy druheho prvku relace
-                        {
-                        if(relation.item[i]==relation.item_b[j])//podminka rovnajiciho se prvku u jine relace
-                            {
-                            if(relation.item[j]==relation.item_b[i])//podminka rovnajicich se prvku u prohozene relace
-                                {
-                                    symmetric=true;//symetricnost se nastavi na true
-                                    count++;//nasel se dalsi symetricky prvek; zvysi se pocitatel
-                                    break;
-                                }
-                            }
-                        }
-                    if(symmetric==false)//pokud zustal na false nenasli jsme prvek
-                    {
-                        printf("false");//vypis
-                        break;
-                    }
-                    if(count==relation.size)
-                    {
-                        printf("true");//vypis
-                        break;
-                    }
-                }
-        }
-    void antisymmetric(set_t relation) //odpoved jestli je relace antisymetricka
-        {
-            bool symmetric;//nastaveni promene symetricnosti
-            for(int i=0;i<relation.size;i++)//cyklus pro indexy prvniho prvku relace
-                {
-                    symmetric=true;//symetricnost se nastavi na false na zacatku kazdeho cyklu
-                    for(int j=0;j<relation.size;i++)//cyklus pro indexy druheho prvku relace
-                {
-                    {
-                        if(relation.item[i]!=relation.item_b[i])
-                        {
-                            if(relation.item[i]==relation.item_b[j])//podminka rovnajiciho se prvku u jine relace
-                                {
-                                    if(relation.item[j]==relation.item_b[i])//podminka rovnajicich se prvku u prohozene relace
-                                        {
-                                            symmetric=false
-                                            ;//symetricnost se nastavi na true
-                                            break;
-                                        }
-                                }
-                        }
-                    }
-                    if (symmetric==false)//pokud se nastavil na false nasli jsme symetricky prvek
-                    {
-                        printf("false");//vypis
-                        break;
-                    }
-                    if(i==relation.size-1)
-                    {
-                        printf("true");//vypis
-                        break;
-                    }
-                }
-            }
-        }
-    void transitive(set_t relation) //odpoved jestli je relace tranzitivni
-        {
-            bool transitive;//nastaveni promene symetricnosti
-            for(int i=0;i<relation.size;i++)//cyklus pro indexy prvniho prvku relace
-                {
-                    transitive=false;//symetricnost se nastavi na false na zacatku kazdeho cyklu
-                    for(int j=0;j<relation.size;i++)//cyklus pro indexy druheho prvku relace
-                    {
-                        for(int k=0;k<relation.size;i++)
-                        {
-                            if(relation.item_b[i]==relation.item[j])
-                                {
-                                    if(relation.item[i]==relation.item[k])//podminka rovnajiciho se prvku u jine relace
-                                        {
-                                            if(relation.item_b[k]==relation.item_b[j])//podminka rovnajicich se prvku u prohozene relace
-                                            {
-                                                transitive=true;//symetricnost se nastavi na true
-                                                break;
-                                            }
-                                        }
-                                }
-                        }
-                        if (transitive==false)//pokud se nenastavil na true nenasli jsme transitivni prvek
-                        {
-                            printf("false");//vypis
-                            break;
-                        }
-                        if(i==relation.size-1)
-                        {
-                            printf("true");//vypis
-                            break;
-                        }
-                    }
-            }
-        }
-
-        bool function(set_t relation)//vraci True nebo False podle toho jestli je funkce
-        {
-            for(int i=0;i<relation.size;i++)//cyklus pro indexy prvni relace
-            {
-                for(int j=0;j<relation.size;j++)//cyklus pro indexy druhe relace
-                {
-                        if(relation.item[i]==relation.item[j])//pokud prvni prvek je stejny
-                        {
-                            if(relation.item_b[i]!=relation.item_b[j])//pokud je druhy prvek jiny
-                            {
-                                return false;//vraci false
-                            }
-                        }
-                }
-                    if (i==relation.size-1)//stane se na posledni smycce
-                    {
-                        return true;//vraci true
-                    }
-            }
-        return true;
-        }
+bool function(relation_t relation)//return true or false depending if is function
+{
+	for(int i=0;i<relation.size;i++)//cycle for indexes of the first relation
+	{
+		for(int j=0;j<relation.size;j++)//cycle for indexes of the second relation
+		{
+				if(relation.item_a[i]==relation.item_a[j])//if first is same
+				{
+					if(relation.item_b[i]!=relation.item_b[j])//if second is different
+					{
+						return false;
+					}
+				}
+		}
+	}
+return true;
+}
 
     void domain(set_t relation)
     {
